@@ -1,0 +1,22 @@
+title: Enterprise MCP Server Documentation
+description: Model Context Protocol (MCP) Server Implementation Guide for Enterprise Development
+theme: jekyll-theme-minimal
+
+markdown: kramdown
+highlighter: rouge
+
+navigation:
+  - title: Home
+    url: /
+  - title: Quick Start
+    url: /quick-start
+  - title: Server Guides
+    url: /servers
+  - title: Best Practices
+    url: /best-practices
+  - title: Troubleshooting
+    url: /troubleshooting
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
