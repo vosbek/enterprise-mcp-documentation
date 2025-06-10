@@ -1,22 +1,51 @@
 title: Enterprise MCP Server Documentation
 description: Model Context Protocol (MCP) Server Implementation Guide for Enterprise Development
-theme: jekyll-theme-minimal
+url: https://vosbek.github.io/enterprise-mcp-documentation
 
+# Theme and styling
+remote_theme: pages-themes/architect@v0.2.0
 markdown: kramdown
 highlighter: rouge
+sass:
+  style: compressed
 
-navigation:
-  - title: Home
-    url: /
-  - title: Quick Start
-    url: /quick-start
-  - title: Server Guides
-    url: /servers
-  - title: Best Practices
-    url: /best-practices
-  - title: Troubleshooting
-    url: /troubleshooting
+# SEO and meta
+lang: en-US
+author: Enterprise Development Tools Team
 
+# Navigation
+header_pages:
+  - quick-start.md
+  - servers/index.md
+  - best-practices.md
+  - troubleshooting.md
+
+# Collections
+collections:
+  servers:
+    output: true
+    permalink: /:collection/:name/
+
+# Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Custom variables
+company:
+  name: "Enterprise Organization"
+  domain: "company.com"
+  
+mcp:
+  version: "1.0"
+  last_updated: "June 2025"
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
