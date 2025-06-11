@@ -19,7 +19,7 @@ description: Enterprise Model Context Protocol servers for development teams
         
         <div class="mcp-grid">
             {% for server in site.mcp_servers %}
-            <a href="{{ '/servers/' | append: server.name | downcase | replace: ' ', '-' | replace: '.', '' | relative_url }}" class="mcp-card{% if server.status == 'under-evaluation' %} under-evaluation{% endif %}">
+            <a href="{{ '/servers/' | append: server.name | downcase | replace: ' ', '-' | replace: '.', '' | relative_url }}" class="mcp-card{% if server.status == 'under-evaluation' %} under-evaluation{% elsif server.status == 'community' %} community{% elsif server.status == 'beta' %} beta{% endif %}">
                 <div class="mcp-card-header">
                     <span class="mcp-icon">{{ server.icon }}</span>
                     <h3 class="mcp-title">{{ server.name }}</h3>
@@ -131,15 +131,28 @@ description: Enterprise Model Context Protocol servers for development teams
             </div>
             
             <div class="card">
-                <h3>🎨 Figma Server <span class="evaluation-badge" style="font-size: 0.625rem;">Beta</span></h3>
+                <h3>🎨 Figma Dev Mode <span class="evaluation-badge" style="font-size: 0.625rem; background: linear-gradient(45deg, #3b82f6, #2563eb);">Beta</span></h3>
                 <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
-                    <strong>Integration Methods:</strong>
+                    <strong>Official Integration:</strong>
                 </div>
                 <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
                     <li>Enable MCP in Figma → Preferences</li>
                     <li>Server: <code>http://127.0.0.1:3845/sse</code></li>
                     <li>AI prompt: "Generate code for selection"</li>
-                    <li>Frame URLs in AI chat</li>
+                    <li>Real-time frame selection</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🖼️ Figma Context <span class="evaluation-badge" style="font-size: 0.625rem; background: linear-gradient(45deg, #10b981, #059669);">Community</span></h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>URL-Based Integration:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>npx figma-context-mcp</code></li>
+                    <li>Paste Figma URLs in AI chat</li>
+                    <li>AI-optimized metadata translation</li>
+                    <li>Cross-framework code generation</li>
                 </ul>
             </div>
             

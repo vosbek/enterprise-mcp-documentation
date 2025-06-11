@@ -35,7 +35,8 @@ mcp_servers:
   - { name: "Internal API", icon: "🔗", desc: "Custom server for API ecosystem" }
   - { name: "File System", icon: "📁", desc: "Local development environment access" }
   - { name: "Jira", icon: "📋", desc: "Project management and issue tracking" }
-  - { name: "Figma", icon: "🎨", desc: "Design collaboration platform" }
+  - { name: "Figma Dev Mode", icon: "🎨", desc: "Official Figma Dev Mode MCP Server", status: "beta" }
+  - { name: "Figma Context", icon: "🖼️", desc: "Community Figma Context MCP for AI agents", status: "community" }
   - { name: "ServiceNow", icon: "🛠️", desc: "IT service management" }
   - { name: "Context7", icon: "🧠", desc: "Vector search and AI memory management", status: "under-evaluation" }
   - { name: "Firecrawl", icon: "🔥", desc: "Web scraping and content extraction", status: "under-evaluation" }

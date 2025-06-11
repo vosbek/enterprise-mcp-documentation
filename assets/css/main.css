@@ -661,6 +661,64 @@ pre code {
   background: linear-gradient(45deg, #f97316, #ea580c);
 }
 
+.mcp-card.community {
+  border-color: #10b981;
+  position: relative;
+}
+
+.mcp-card.community::after {
+  content: "Community";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: linear-gradient(45deg, #10b981, #059669);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.4);
+}
+
+.mcp-card.community:hover {
+  border-color: #059669;
+}
+
+.mcp-card.community:hover::after {
+  background: linear-gradient(45deg, #059669, #047857);
+}
+
+.mcp-card.beta {
+  border-color: #3b82f6;
+  position: relative;
+}
+
+.mcp-card.beta::after {
+  content: "Beta";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 1px 3px rgba(59, 130, 246, 0.4);
+}
+
+.mcp-card.beta:hover {
+  border-color: #2563eb;
+}
+
+.mcp-card.beta:hover::after {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+}
+
 @media (min-width: 1025px) {
   .mobile-menu {
     display: none;
