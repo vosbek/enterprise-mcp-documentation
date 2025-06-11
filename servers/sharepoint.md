@@ -65,48 +65,77 @@ description: Enterprise SharePoint integration for document search and retrieval
 <div class="section section-alt">
     <div class="container">
         <div class="section-title">
-            <h2>Configuration</h2>
-            <p>Set up SharePoint integration with Azure AD authentication</p>
+            <h2>Step-by-Step Setup</h2>
+            <p>Follow these steps to connect to your SharePoint</p>
         </div>
         
         <div class="card">
-            <h3>Azure AD App Registration</h3>
-            <div class="code-block"># 1. Register application in Azure AD
-# - Go to Azure Portal > Azure Active Directory > App registrations
-# - Create new registration with name "Enterprise MCP SharePoint"
-# - Set redirect URI (optional for server-to-server)
+            <h3>Step 1: Install the SharePoint MCP Server</h3>
+            <p>Install the SharePoint MCP server on your development machine:</p>
+            
+```bash
+# Install the SharePoint MCP server
+npm install -g @mcp/sharepoint-server
 
-# 2. Configure API permissions
-# Required permissions:
-# - Sites.Read.All (SharePoint sites)
-# - Files.Read.All (OneDrive and SharePoint files)
-# - User.Read (basic user info)
-
-# 3. Create client secret
-# - Go to Certificates & secrets
-# - Create new client secret (note the value)
-
-# 4. Note application values
-export SHAREPOINT_CLIENT_ID="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-export SHAREPOINT_CLIENT_SECRET="your-client-secret-value"
-export SHAREPOINT_TENANT_ID="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</div>
+# Verify installation
+mcp --version
+```
         </div>
         
         <div class="card">
-            <h3>MCP Server Setup</h3>
-            <div class="code-block"># Install SharePoint MCP server
-mcp install sharepoint
+            <h3>Step 2: Get Azure AD App Registration (Ask Your IT Admin)</h3>
+            <p>You'll need your IT administrator to create an Azure AD app registration. Ask them for:</p>
+            
+            <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li><strong>Client ID</strong> (looks like: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</li>
+                <li><strong>Client Secret</strong> (a long string of characters)</li>
+                <li><strong>Tenant ID</strong> (looks like: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</li>
+                <li><strong>SharePoint URL</strong> (e.g., https://company.sharepoint.com)</li>
+            </ul>
+            
+            <p><strong>Tell your IT admin the app needs these permissions:</strong></p>
+            <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li>Sites.Read.All (to read SharePoint sites)</li>
+                <li>Files.Read.All (to read files)</li>
+                <li>User.Read (basic user info)</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3>Step 3: Configure SharePoint Connection</h3>
+            <p>Use the credentials your IT admin provided:</p>
+            
+```bash
+# Set your credentials (replace with actual values from IT)
+export SHAREPOINT_CLIENT_ID="your-client-id-here"
+export SHAREPOINT_CLIENT_SECRET="your-client-secret-here"
+export SHAREPOINT_TENANT_ID="your-tenant-id-here"
+export SHAREPOINT_URL="https://company.sharepoint.com"
 
-# Configure SharePoint connection
+# Configure the MCP server
 mcp config sharepoint \
-  --tenant-url https://company.sharepoint.com \
+  --tenant-url $SHAREPOINT_URL \
   --client-id $SHAREPOINT_CLIENT_ID \
   --client-secret $SHAREPOINT_CLIENT_SECRET \
   --tenant-id $SHAREPOINT_TENANT_ID
+```
+        </div>
+        
+        <div class="card">
+            <h3>Step 4: Test Your Connection</h3>
+            <p>Verify everything is working:</p>
+            
+```bash
+# Test the connection
+mcp test sharepoint
 
-# Test connection
-mcp test sharepoint --connection
-mcp auth verify sharepoint</div>
+# Verify authentication
+mcp auth verify sharepoint
+
+# If successful, you should see:
+# ✅ SharePoint connection successful
+# ✅ Site access verified
+```
         </div>
         
         <div class="card">

@@ -55,36 +55,140 @@ description: Enterprise project management and issue tracking integration
 <div class="section section-alt">
     <div class="container">
         <div class="section-title">
-            <h2>Configuration</h2>
-            <p>Set up Jira integration with enterprise authentication</p>
+            <h2>Step-by-Step Setup</h2>
+            <p>Follow these steps to connect to your Jira instance</p>
         </div>
         
         <div class="card">
-            <h3>Installation & Setup</h3>
-            <div class="code-block"># Install Jira MCP server
-mcp install jira
+            <h3>Step 1: Install the Jira MCP Server</h3>
+            <p>Install the Jira MCP server on your development machine:</p>
+            
+```bash
+# Install the Jira MCP server
+npm install -g @mcp/jira-server
 
-# Configure Jira connection
+# Verify installation
+mcp --version
+```
+        </div>
+        
+        <div class="card">
+            <h3>Step 2: Create a Jira API Token</h3>
+            <p>You need an API token to access your Jira instance:</p>
+            
+            <ol style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li>Go to your Jira instance (e.g., https://company.atlassian.net)</li>
+                <li>Click your profile picture in the top-right corner</li>
+                <li>Go to "Account settings" or "Manage account"</li>
+                <li>Click "Security" in the left sidebar</li>
+                <li>Click "Create and manage API tokens"</li>
+                <li>Click "Create API token"</li>
+                <li>Give it a name like "MCP Jira Integration"</li>
+                <li>Copy the token (it starts with something like ATATT...)</li>
+            </ol>
+            
+            <p><strong>Note:</strong> Save this token securely - you won't be able to see it again!</p>
+        </div>
+        
+        <div class="card">
+            <h3>Step 3: Get Your Project Information</h3>
+            <p>Ask your project manager or team lead for:</p>
+            
+            <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li><strong>Jira URL</strong> (e.g., https://company.atlassian.net)</li>
+                <li><strong>Project Keys</strong> you need access to (e.g., PROJ, DEV, TEST)</li>
+                <li><strong>Your Jira username/email</strong> (usually your company email)</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3>Step 4: Configure Your Jira Connection</h3>
+            <p>Set up the connection using your credentials:</p>
+            
+```bash
+# Set your credentials (replace with actual values)
+export JIRA_URL="https://company.atlassian.net"
+export JIRA_USERNAME="your-email@company.com"
+export JIRA_API_TOKEN="your-api-token-here"
+export JIRA_PROJECTS="PROJ,DEV,TEST"
+
+# Configure the MCP server
 mcp config jira \
-  --url https://company.atlassian.net \
+  --url $JIRA_URL \
   --username $JIRA_USERNAME \
   --api-token $JIRA_API_TOKEN \
-  --project-keys "PROJ,DEV,TEST"
-
-# Test connection
-mcp test jira --connection</div>
+  --project-keys $JIRA_PROJECTS \
+  --readonly
+```
         </div>
         
         <div class="card">
-            <h3>Usage Examples</h3>
-            <div class="code-block"># Query open issues
+            <h3>Step 5: Test Your Connection</h3>
+            <p>Verify everything is working:</p>
+            
+```bash
+# Test the connection
+mcp test jira
+
+# Verify authentication
+mcp auth verify jira
+
+# If successful, you should see:
+# ✅ Jira connection successful
+# ✅ Project access verified
+# ✅ API permissions confirmed
+```
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Usage Examples</h2>
+            <p>Access Jira data through Copilot and MCP integration</p>
+        </div>
+        
+        <div class="card">
+            <h3>Method 1: Ask GitHub Copilot (Recommended)</h3>
+            <p>In your IDE with GitHub Copilot, you can ask natural language questions:</p>
+            
+            <p><strong>Example questions you can ask Copilot:</strong></p>
+            <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li>"Show me all open bugs assigned to my team"</li>
+                <li>"What's the progress of our current sprint?"</li>
+                <li>"Find all high-priority issues in the PROJ project"</li>
+                <li>"What issues were completed last week?"</li>
+                <li>"Show me all tickets I'm assigned to"</li>
+                <li>"What are the most common types of bugs we're seeing?"</li>
+            </ul>
+            
+            <p>Copilot will automatically query your Jira instance and provide answers!</p>
+        </div>
+        
+        <div class="card">
+            <h3>Method 2: Direct MCP Commands</h3>
+            <p>You can also query Jira directly from your terminal:</p>
+            
+            <h4>Query open issues:</h4>
+```bash
 mcp query jira "show all open bugs assigned to my team"
+```
 
-# Find project status
+            <h4>Find project status:</h4>
+```bash
 mcp query jira "get sprint progress for project PROJ"
+```
 
-# Search by JQL
-mcp query jira "project = PROJ AND status = 'In Progress'"</div>
+            <h4>Search using JQL (Jira Query Language):</h4>
+```bash
+mcp query jira "project = PROJ AND status = 'In Progress'"
+```
+
+            <h4>Get issue details:</h4>
+```bash
+mcp query jira "show details for issue PROJ-123"
+```
         </div>
     </div>
 </div>

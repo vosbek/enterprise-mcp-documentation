@@ -65,47 +65,79 @@ description: Enterprise GitHub integration for repository browsing and issue tra
 <div class="section section-alt">
     <div class="container">
         <div class="section-title">
-            <h2>Configuration</h2>
-            <p>Set up GitHub Enterprise integration with proper authentication</p>
+            <h2>Step-by-Step Setup</h2>
+            <p>Follow these steps to connect to your GitHub Enterprise</p>
         </div>
         
         <div class="card">
-            <h3>Installation & Setup</h3>
-            <div class="code-block"># Install GitHub MCP server
-mcp install github
+            <h3>Step 1: Install the GitHub MCP Server</h3>
+            <p>Install the GitHub MCP server on your development machine:</p>
+            
+```bash
+# Install the GitHub MCP server
+npm install -g @mcp/github-server
 
-# Configure GitHub Enterprise connection
+# Verify installation
+mcp --version
+```
+        </div>
+        
+        <div class="card">
+            <h3>Step 2: Create a GitHub Personal Access Token</h3>
+            <p>You need a token to access your company's GitHub:</p>
+            
+            <ol style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li>Go to your GitHub Enterprise (e.g., https://github.company.com)</li>
+                <li>Click your profile picture → Settings</li>
+                <li>In the left sidebar, click "Developer settings"</li>
+                <li>Click "Personal access tokens" → "Tokens (classic)"</li>
+                <li>Click "Generate new token (classic)"</li>
+                <li>Select these scopes:
+                    <ul>
+                        <li>✅ <code>repo</code> (for repository access)</li>
+                        <li>✅ <code>read:org</code> (for organization data)</li>
+                        <li>✅ <code>read:user</code> (for user information)</li>
+                        <li>✅ <code>read:project</code> (for project boards)</li>
+                    </ul>
+                </li>
+                <li>Click "Generate token" and copy the token (starts with ghp_)</li>
+            </ol>
+        </div>
+        
+        <div class="card">
+            <h3>Step 3: Configure Your GitHub Connection</h3>
+            <p>Set up the connection using your token:</p>
+            
+```bash
+# Replace these with your actual values
+export GITHUB_TOKEN="ghp_your_actual_token_here"
+export GITHUB_URL="https://github.company.com"
+export GITHUB_ORG="your-company-org"
+
+# Configure the MCP server
 mcp config github \
-  --url https://github.company.com \
   --token $GITHUB_TOKEN \
-  --organization company-org \
+  --url $GITHUB_URL \
+  --organization $GITHUB_ORG \
   --readonly
-
-# Test connection
-mcp test github --connection
-mcp auth verify github</div>
+```
         </div>
         
         <div class="card">
-            <h3>Authentication Setup</h3>
-            <div class="code-block"># Create GitHub Personal Access Token
-# 1. Go to GitHub Settings > Developer settings > Personal access tokens
-# 2. Generate new token with required scopes:
-#    - repo (for repository access)
-#    - read:org (for organization data)
-#    - read:user (for user information)
-#    - read:project (for project boards)
+            <h3>Step 4: Test Your Connection</h3>
+            <p>Verify everything is working:</p>
+            
+```bash
+# Test the connection
+mcp test github
 
-# Set environment variables
-export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
-export GITHUB_ENTERPRISE_URL="https://github.company.com"
-export GITHUB_ORG="company-org"
+# Verify authentication
+mcp auth verify github
 
-# Configure MCP server
-mcp config github \
-  --token $GITHUB_TOKEN \
-  --base-url $GITHUB_ENTERPRISE_URL \
-  --org $GITHUB_ORG</div>
+# If successful, you should see:
+# ✅ GitHub connection successful
+# ✅ Organization access verified
+```
         </div>
     </div>
 </div>
@@ -118,30 +150,45 @@ mcp config github \
         </div>
         
         <div class="card">
-            <h3>GitHub Copilot Integration</h3>
-            <p>Ask GitHub Copilot questions about your repositories and development workflow:</p>
-            <div class="code-block"># Example questions for Copilot:
-"What are the most recent pull requests in the main repository?"
-"Show me open issues assigned to my team"
-"What repositories have been most active this month?"
-"Find code examples of authentication implementation"
-"List all repositories using Node.js in our organization"
-"What are the security vulnerabilities in our codebase?"</div>
+            <h3>Method 1: Ask GitHub Copilot (Recommended)</h3>
+            <p>In your IDE with GitHub Copilot, you can ask natural language questions:</p>
+            
+            <p><strong>Example questions you can ask Copilot:</strong></p>
+            <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                <li>"What are the most recent pull requests in the main repository?"</li>
+                <li>"Show me open issues assigned to my team"</li>
+                <li>"What repositories have been most active this month?"</li>
+                <li>"Find code examples of authentication implementation"</li>
+                <li>"List all repositories using Node.js in our organization"</li>
+                <li>"What are the security vulnerabilities in our codebase?"</li>
+            </ul>
+            
+            <p>Copilot will automatically search your GitHub repositories and provide answers!</p>
         </div>
         
         <div class="card">
-            <h3>Direct MCP Queries</h3>
-            <div class="code-block"># Query repository information
+            <h3>Method 2: Direct MCP Commands</h3>
+            <p>You can also query GitHub directly from your terminal:</p>
+            
+            <h4>List repositories:</h4>
+```bash
 mcp query github "repositories in organization company-org"
+```
 
-# Find specific issues
+            <h4>Find specific issues:</h4>
+```bash
 mcp query github "open issues labeled 'bug' in repository 'main-app'"
+```
 
-# Search for code patterns
+            <h4>Search for code patterns:</h4>
+```bash
 mcp query github "search code 'function authenticate' in organization"
+```
 
-# Get pull request details
-mcp query github "pull requests merged last week in repository 'api-service'"</div>
+            <h4>Get pull request details:</h4>
+```bash
+mcp query github "pull requests merged last week in repository 'api-service'"
+```
         </div>
         
         <div class="card">
