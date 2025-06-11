@@ -46,8 +46,9 @@
             <ul class="nav-links">
                 {% for server in site.mcp_servers %}
                 <li>
-                    <a href="{{ '/servers/' | append: server.name | downcase | replace: ' ', '-' | replace: '.', '' | relative_url }}" class="nav-link">
-                        {{ server.icon }} {{ server.name }}
+                    <a href="{{ '/servers/' | append: server.name | downcase | replace: ' ', '-' | replace: '.', '' | relative_url }}" class="nav-link" title="{{ server.name }} - {{ server.desc }}">
+                        <span class="nav-icon">{{ server.icon }}</span>
+                        <span class="nav-text">{{ server.name }}</span>
                     </a>
                 </li>
                 {% endfor %}
