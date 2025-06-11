@@ -556,6 +556,60 @@ pre code {
   }
 }
 
+/* Evaluation Badges */
+.evaluation-badge {
+  background: linear-gradient(45deg, #f59e0b, #f97316);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.6), 0 0 16px rgba(245, 158, 11, 0.2);
+  }
+}
+
+/* Status indicators for MCP cards */
+.mcp-card.under-evaluation {
+  border-color: #f59e0b;
+  position: relative;
+}
+
+.mcp-card.under-evaluation::after {
+  content: "Under Evaluation";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: linear-gradient(45deg, #f59e0b, #f97316);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.4);
+}
+
+.mcp-card.under-evaluation:hover {
+  border-color: #f97316;
+}
+
+.mcp-card.under-evaluation:hover::after {
+  background: linear-gradient(45deg, #f97316, #ea580c);
+}
+
 @media (min-width: 1025px) {
   .mobile-menu {
     display: none;

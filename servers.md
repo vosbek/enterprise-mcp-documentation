@@ -19,7 +19,7 @@ description: Enterprise Model Context Protocol servers for development teams
         
         <div class="mcp-grid">
             {% for server in site.mcp_servers %}
-            <a href="{{ '/servers/' | append: server.name | downcase | replace: ' ', '-' | replace: '.', '' | relative_url }}" class="mcp-card">
+            <a href="{{ '/servers/' | append: server.name | downcase | replace: ' ', '-' | replace: '.', '' | relative_url }}" class="mcp-card{% if server.status == 'under-evaluation' %} under-evaluation{% endif %}">
                 <div class="mcp-card-header">
                     <span class="mcp-icon">{{ server.icon }}</span>
                     <h3 class="mcp-title">{{ server.name }}</h3>
@@ -73,6 +73,18 @@ description: Enterprise Model Context Protocol servers for development teams
                     <li>Internal APIs</li>
                 </ul>
                 <a href="{{ '/servers/sharepoint' | relative_url }}" class="btn btn-primary" style="margin-top: 1rem;">Configure Systems</a>
+            </div>
+            
+            <div class="card">
+                <h3>🧠 AI & Data Processing <span class="evaluation-badge">Under Evaluation</span></h3>
+                <p>Advanced AI memory management and web data extraction capabilities currently being evaluated for enterprise deployment.</p>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Context7 Vector Search</li>
+                    <li>Firecrawl Web Scraping</li>
+                    <li>AI Memory Management</li>
+                    <li>Content Extraction</li>
+                </ul>
+                <a href="{{ '/servers/context7' | relative_url }}" class="btn btn-secondary" style="margin-top: 1rem;">View Evaluation</a>
             </div>
         </div>
     </div>

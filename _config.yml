@@ -37,6 +37,8 @@ mcp_servers:
   - { name: "Jira", icon: "📋", desc: "Project management and issue tracking" }
   - { name: "Figma", icon: "🎨", desc: "Design collaboration platform" }
   - { name: "ServiceNow", icon: "🛠️", desc: "IT service management" }
+  - { name: "Context7", icon: "🧠", desc: "Vector search and AI memory management", status: "under-evaluation" }
+  - { name: "Firecrawl", icon: "🔥", desc: "Web scraping and content extraction", status: "under-evaluation" }
 
 # Exclude files
 exclude:
