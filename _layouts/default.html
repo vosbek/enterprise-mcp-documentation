@@ -1,246 +1,623 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    {% seo %}
-    
-    <!-- CSS - Primary and fallback -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/fallback.css' | relative_url }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-    
-    {% include head-custom.html %}
-  </head>
-  <body>
-    
-    <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M3 6h18M3 12h18M3 18h18"/>
-      </svg>
-    </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- SEO -->
+  {% seo %}
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #3b82f6;
+      --accent: #10b981;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f9fafb;
+      --bg-tertiary: #f3f4f6;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --sidebar-width: 280px;
+    }
 
-    <!-- Sidebar -->
-    <nav class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <a href="{{ '/' | relative_url }}" class="sidebar-logo">
-          <div class="sidebar-logo-icon">
-            MCP
-          </div>
-          <div class="sidebar-logo-text">Enterprise MCP</div>
-        </a>
-      </div>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      <div class="sidebar-nav">
-        <!-- Main Navigation -->
-        <div class="nav-section">
-          <div class="nav-section-title">Documentation</div>
-          <ul class="nav-links">
-            <li>
-              <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">
-                <svg class="nav-link-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                </svg>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="{{ '/quick-start.html' | relative_url }}" class="nav-link {% if page.url contains 'quick-start' %}active{% endif %}">
-                <svg class="nav-link-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                </svg>
-                Quick Start
-              </a>
-            </li>
-            <li>
-              <a href="{{ '/best-practices.html' | relative_url }}" class="nav-link {% if page.url contains 'best-practices' %}active{% endif %}">
-                <svg class="nav-link-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                </svg>
-                Best Practices
-              </a>
-            </li>
-            <li>
-              <a href="{{ '/troubleshooting.html' | relative_url }}" class="nav-link {% if page.url contains 'troubleshooting' %}active{% endif %}">
-                <svg class="nav-link-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                </svg>
-                Troubleshooting
-              </a>
-            </li>
-          </ul>
-        </div>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+    }
 
-        <!-- MCP Servers Section -->
-        <div class="nav-section">
-          <div class="nav-section-title">MCP Servers</div>
-          <div class="server-nav-cards">
-            <a href="{{ '/servers/database.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon database">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">Database</div>
-              </div>
-              <div class="server-nav-description">Oracle, Snowflake, PostgreSQL, AWS RDS</div>
-            </a>
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: #1f2937;
+      overflow-y: auto;
+      z-index: 100;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
 
-            <a href="{{ '/servers/github.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon github">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">GitHub</div>
-              </div>
-              <div class="server-nav-description">Internal Enterprise repositories</div>
-            </a>
+    .sidebar.open {
+      transform: translateX(0);
+    }
 
-            <a href="{{ '/servers/jira.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon jira">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M11.53,2C11.53,2.95 11.53,3.89 11.53,4.84C11.53,8.32 8.32,11.53 4.84,11.53C3.89,11.53 2.95,11.53 2,11.53L11.53,2M12.47,2L22,11.53C21.05,11.53 20.11,11.53 19.16,11.53C15.68,11.53 12.47,8.32 12.47,4.84C12.47,3.89 12.47,2.95 12.47,2M2,12.47C2.95,12.47 3.89,12.47 4.84,12.47C8.32,12.47 11.53,15.68 11.53,19.16C11.53,20.11 11.53,21.05 11.53,22L2,12.47M12.47,22C12.47,21.05 12.47,20.11 12.47,19.16C12.47,15.68 15.68,12.47 19.16,12.47C20.11,12.47 21.05,12.47 22,12.47L12.47,22Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">Jira</div>
-              </div>
-              <div class="server-nav-description">Issue tracking and project management</div>
-            </a>
+    @media (min-width: 1024px) {
+      .sidebar {
+        transform: translateX(0);
+      }
+    }
 
-            <a href="{{ '/servers/sharepoint.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon sharepoint">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.5,9C19.5,9 20.5,9.4 21.2,10.1C21.9,10.8 22.3,11.8 22.3,12.8C22.3,13.8 21.9,14.8 21.2,15.5C20.5,16.2 19.5,16.6 18.5,16.6H18V18H16V16.6H6.5C5.5,16.6 4.5,16.2 3.8,15.5C3.1,14.8 2.7,13.8 2.7,12.8C2.7,11.8 3.1,10.8 3.8,10.1C4.5,9.4 5.5,9 6.5,9H7V6H9V9H16V6H18V9H18.5M6.5,10.5C6,10.5 5.6,10.7 5.3,11C5,11.3 4.8,11.7 4.8,12.2C4.8,12.7 5,13.1 5.3,13.4C5.6,13.7 6,13.9 6.5,13.9H18.5C19,13.9 19.4,13.7 19.7,13.4C20,13.1 20.2,12.7 20.2,12.2C20.2,11.7 20,11.3 19.7,11C19.4,10.7 19,10.5 18.5,10.5H6.5Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">SharePoint</div>
-              </div>
-              <div class="server-nav-description">Document and knowledge management</div>
-            </a>
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid #374151;
+    }
 
-            <a href="{{ '/servers/servicenow.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon servicenow">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,7V13H13V7H11M11,15V17H13V15H11Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">ServiceNow</div>
-              </div>
-              <div class="server-nav-description">IT service management</div>
-            </a>
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
 
-            <a href="{{ '/servers/figma.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon figma">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,12M8,12A4,4 0 0,1 12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">Figma</div>
-              </div>
-              <div class="server-nav-description">Design collaboration platform</div>
-            </a>
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: white;
+    }
 
-            <a href="{{ '/servers/backstage.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon backstage">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4,1H20A1,1 0 0,1 21,2V6A1,1 0 0,1 20,7H4A1,1 0 0,1 3,6V2A1,1 0 0,1 4,1M4,9H20A1,1 0 0,1 21,10V14A1,1 0 0,1 20,15H4A1,1 0 0,1 3,14V10A1,1 0 0,1 4,9M4,17H20A1,1 0 0,1 21,18V22A1,1 0 0,1 20,23H4A1,1 0 0,1 3,22V18A1,1 0 0,1 4,17Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">Backstage.io</div>
-              </div>
-              <div class="server-nav-description">Service catalog and developer portal</div>
-            </a>
+    .logo-text {
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-            <a href="{{ '/servers/internal-api.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon api">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7.5,4A5.5,5.5 0 0,0 2,9.5C2,10 2.09,10.5 2.22,11H6.3L7.57,7.63C7.87,6.83 8.6,6.3 9.5,6.3C10.4,6.3 11.13,6.83 11.43,7.63L12.5,10.5L14.07,7.63C14.37,6.83 15.1,6.3 16,6.3C16.9,6.3 17.63,6.83 17.93,7.63L19.2,11H21.78C21.91,10.5 22,10 22,9.5A5.5,5.5 0 0,0 16.5,4C14.64,4 13,4.92 12,6.34C11,4.92 9.36,4 7.5,4V4M7.5,18A5.5,5.5 0 0,0 13,12.5C13,12 12.91,11.5 12.78,11H8.7L7.43,14.37C7.13,15.17 6.4,15.7 5.5,15.7C4.6,15.7 3.87,15.17 3.57,14.37L2.5,11.5L0.93,14.37C0.63,15.17 0.1,15.7 0,15.7C0,15.7 0,15.7 0,15.7C0,15.7 0,15.7 0,15.7L2.22,11H2.22C2.09,11.5 2,12 2,12.5A5.5,5.5 0 0,0 7.5,18V18Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">Internal APIs</div>
-              </div>
-              <div class="server-nav-description">OpenAPI/Swagger integrations</div>
-            </a>
+    .nav-section {
+      padding: 24px 0;
+    }
 
-            <a href="{{ '/servers/filesystem.html' | relative_url }}" class="server-nav-card">
-              <div class="server-nav-card-header">
-                <div class="server-nav-icon filesystem">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z"/>
-                  </svg>
-                </div>
-                <div class="server-nav-title">File System</div>
-              </div>
-              <div class="server-nav-description">Local development files</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    .nav-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #9ca3af;
+      padding: 0 20px 12px;
+    }
 
-    <!-- Main Content Area -->
-    <div class="main-wrapper">
-      <main class="main-content" role="main">
-        {{ content }}
-      </main>
+    .nav-links {
+      list-style: none;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 12px 20px;
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #374151;
+      color: white;
+      border-left-color: var(--primary);
+    }
+
+    .server-cards {
+      padding: 0 16px;
+    }
+
+    .server-card {
+      background: #374151;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s ease;
+    }
+
+    .server-card:hover {
+      background: #4b5563;
+      transform: translateY(-1px);
+    }
+
+    .server-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .server-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: white;
+    }
+
+    .server-icon.database { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+    .server-icon.github { background: linear-gradient(135deg, #1f2937, #4b5563); }
+    .server-icon.jira { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+    .server-icon.sharepoint { background: linear-gradient(135deg, #dc2626, #f59e0b); }
+    .server-icon.servicenow { background: linear-gradient(135deg, #059669, #10b981); }
+    .server-icon.figma { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+
+    .server-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .server-description {
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1.3;
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 0;
+      min-height: 100vh;
+      transition: margin-left 0.3s ease;
+    }
+
+    @media (min-width: 1024px) {
+      .main {
+        margin-left: var(--sidebar-width);
+      }
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 110;
+      background: #1f2937;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      .mobile-menu {
+        display: none;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 0;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .page-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .page-description {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    /* Content */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .content h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 16px;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 48px 0 24px 0;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 32px 0 16px 0;
+    }
+
+    .content p {
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+    }
+
+    .content ul, .content ol {
+      margin: 20px 0;
+      padding-left: 28px;
+    }
+
+    .content li {
+      margin: 8px 0;
+      color: var(--text-secondary);
+    }
+
+    .content code {
+      background: #f1f5f9;
+      color: var(--primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+
+    .content pre {
+      background: #1f2937;
+      color: #e5e7eb;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .content pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Features Grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin: 48px 0;
+    }
+
+    .feature {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title, .page-title {
+        font-size: 2rem;
+      }
+      
+      .hero-subtitle, .page-description {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu" id="mobileMenu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 6h18M3 12h18M3 18h18"/>
+    </svg>
+  </button>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="{{ '/' | relative_url }}" class="logo">
+        <div class="logo-icon">MCP</div>
+        <div class="logo-text">Enterprise MCP</div>
+      </a>
     </div>
 
-    <!-- JavaScript for mobile menu -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const sidebar = document.getElementById('sidebar');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-          sidebar.classList.toggle('open');
-        });
+    <div class="nav-section">
+      <div class="nav-title">Documentation</div>
+      <ul class="nav-links">
+        <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
+        <li><a href="{{ '/quick-start' | relative_url }}" class="nav-link {% if page.url contains 'quick-start' %}active{% endif %}">Quick Start</a></li>
+        <li><a href="{{ '/best-practices' | relative_url }}" class="nav-link {% if page.url contains 'best-practices' %}active{% endif %}">Best Practices</a></li>
+        <li><a href="{{ '/troubleshooting' | relative_url }}" class="nav-link {% if page.url contains 'troubleshooting' %}active{% endif %}">Troubleshooting</a></li>
+      </ul>
+    </div>
 
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-          if (window.innerWidth <= 1024 && 
-              !sidebar.contains(e.target) && 
-              !mobileMenuBtn.contains(e.target)) {
-            sidebar.classList.remove('open');
-          }
-        });
+    <div class="nav-section">
+      <div class="nav-title">MCP Servers</div>
+      <div class="server-cards">
+        <a href="{{ '/servers/database' | relative_url }}" class="server-card">
+          <div class="server-card-header">
+            <div class="server-icon database">🗄️</div>
+            <div class="server-title">Database</div>
+          </div>
+          <div class="server-description">Oracle, Snowflake, PostgreSQL, AWS RDS</div>
+        </a>
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-          if (window.innerWidth > 1024) {
-            sidebar.classList.remove('open');
-          }
-        });
+        <a href="{{ '/servers/github' | relative_url }}" class="server-card">
+          <div class="server-card-header">
+            <div class="server-icon github">📱</div>
+            <div class="server-title">GitHub</div>
+          </div>
+          <div class="server-description">Internal Enterprise repositories</div>
+        </a>
+
+        <a href="{{ '/servers/jira' | relative_url }}" class="server-card">
+          <div class="server-card-header">
+            <div class="server-icon jira">📋</div>
+            <div class="server-title">Jira</div>
+          </div>
+          <div class="server-description">Issue tracking and project management</div>
+        </a>
+
+        <a href="{{ '/servers/sharepoint' | relative_url }}" class="server-card">
+          <div class="server-card-header">
+            <div class="server-icon sharepoint">📄</div>
+            <div class="server-title">SharePoint</div>
+          </div>
+          <div class="server-description">Document and knowledge management</div>
+        </a>
+
+        <a href="{{ '/servers/servicenow' | relative_url }}" class="server-card">
+          <div class="server-card-header">
+            <div class="server-icon servicenow">🛠️</div>
+            <div class="server-title">ServiceNow</div>
+          </div>
+          <div class="server-description">IT service management</div>
+        </a>
+
+        <a href="{{ '/servers/figma' | relative_url }}" class="server-card">
+          <div class="server-card-header">
+            <div class="server-icon figma">🎨</div>
+            <div class="server-title">Figma</div>
+          </div>
+          <div class="server-description">Design collaboration platform</div>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    {{ content }}
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const sidebar = document.getElementById('sidebar');
+      
+      mobileMenu.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
       });
-    </script>
 
-    <!-- Analytics and tracking scripts -->
-    {% if site.google_analytics %}
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', '{{ site.google_analytics }}', 'auto');
-        ga('send', 'pageview');
-      </script>
-    {% endif %}
-  </body>
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024 && 
+            !sidebar.contains(e.target) && 
+            !mobileMenu.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 1024) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
 </html>

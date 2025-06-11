@@ -1,23 +1,17 @@
-title: Enterprise MCP Server Documentation
+title: Enterprise MCP Documentation
 description: Model Context Protocol (MCP) Server Implementation Guide for Enterprise Development
 url: https://vosbek.github.io/enterprise-mcp-documentation
-baseurl: "/enterprise-mcp-documentation"
 
-# GitHub Pages and Jekyll settings
-source: .
-destination: ./_site
-permalink: /:title.html
-
-# No remote theme - using custom styling
+# Jekyll settings
 markdown: kramdown
 highlighter: rouge
+permalink: /:title.html
 
-# SASS/SCSS Processing
-sass:
-  style: compressed
-  sass_dir: _sass
-  load_paths:
-    - _sass
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
 # SEO and meta
 lang: en-US
@@ -32,18 +26,7 @@ mcp:
   version: "1.0"
   last_updated: "June 2025"
 
-# Plugins - GitHub Pages compatible
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-sass-converter
-
-# File processing
-keep_files:
-  - assets
-
-# Exclude files from processing
+# Exclude files
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -53,19 +36,9 @@ exclude:
   - .jekyll-cache
   - README.md
 
-# Include files that start with underscores
-include:
-  - _pages
-
-# Default settings for different content types
+# Default layout for all pages
 defaults:
   - scope:
       path: ""
-      type: "pages"
-    values:
-      layout: "default"
-  - scope:
-      path: "servers"
-      type: "pages"
     values:
       layout: "default"
