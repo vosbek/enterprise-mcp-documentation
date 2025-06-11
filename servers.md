@@ -31,6 +31,166 @@ description: Enterprise Model Context Protocol servers for development teams
     </div>
 </div>
 
+<div class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>MCP Server Tools & API Calls</h2>
+            <p>Actual tool definitions and API methods available through each MCP server</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>🗄️ Database Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config database oracle</code></li>
+                    <li><code>mcp query database "SQL..."</code></li>
+                    <li><code>mcp test database</code></li>
+                    <li>Natural language SQL queries</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>📱 GitHub Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config github --token</code></li>
+                    <li><code>mcp query github "repositories in org"</code></li>
+                    <li><code>mcp query github "search code 'function'"</code></li>
+                    <li><code>mcp auth verify github</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>📄 SharePoint Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config sharepoint --tenant-url</code></li>
+                    <li><code>mcp query sharepoint "search documents"</code></li>
+                    <li><code>mcp query sharepoint "find documents by user"</code></li>
+                    <li><code>mcp test sharepoint</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🏗️ Backstage.io Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config backstage --url</code></li>
+                    <li><code>mcp query backstage "list microservices"</code></li>
+                    <li><code>mcp query backstage "find API docs"</code></li>
+                    <li><code>mcp test backstage</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🔗 Internal API Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config internal-api add</code></li>
+                    <li><code>mcp query internal-api "get user details"</code></li>
+                    <li><code>mcp query internal-api "health status"</code></li>
+                    <li><code>mcp test internal-api</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>📁 File System Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config filesystem --workspace</code></li>
+                    <li><code>mcp query filesystem "show structure"</code></li>
+                    <li><code>mcp query filesystem "find config files"</code></li>
+                    <li><code>mcp test filesystem</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>📋 Jira Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config jira --url --api-token</code></li>
+                    <li><code>mcp query jira "show open bugs"</code></li>
+                    <li><code>mcp query jira "sprint progress"</code></li>
+                    <li><code>mcp test jira</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🎨 Figma Server <span class="evaluation-badge" style="font-size: 0.625rem;">Beta</span></h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>Integration Methods:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li>Enable MCP in Figma → Preferences</li>
+                    <li>Server: <code>http://127.0.0.1:3845/sse</code></li>
+                    <li>AI prompt: "Generate code for selection"</li>
+                    <li>Frame URLs in AI chat</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🛠️ ServiceNow Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config servicenow --instance</code></li>
+                    <li><code>mcp query servicenow "critical incidents"</code></li>
+                    <li><code>mcp query servicenow "service requests"</code></li>
+                    <li><code>mcp test servicenow</code></li>
+                </ul>
+            </div>
+            
+            <div class="card under-evaluation">
+                <h3>🧠 Context7 Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config context7 --redis-url</code></li>
+                    <li><code>context7 init --index-name</code></li>
+                    <li><code>mcp query context7 "remember that..."</code></li>
+                    <li><code>mcp query context7 "what do we know?"</code></li>
+                </ul>
+            </div>
+            
+            <div class="card under-evaluation">
+                <h3>🔥 Firecrawl Server</h3>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    <strong>CLI Tools:</strong>
+                </div>
+                <ul style="margin-left: 1rem; color: var(--gray-600); font-size: 0.8125rem;">
+                    <li><code>mcp config firecrawl --api-key</code></li>
+                    <li><code>firecrawl scrape "https://url"</code></li>
+                    <li><code>mcp query firecrawl "scrape and extract"</code></li>
+                    <li><code>mcp test firecrawl</code></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="background: rgba(30, 64, 175, 0.05); border: 1px solid rgba(30, 64, 175, 0.2); border-radius: 8px; padding: 1.5rem; margin-top: 2rem; text-align: center;">
+            <p style="margin: 0; color: var(--primary-dark); font-weight: 500;">
+                <strong>🔧 Technical Access:</strong> All MCP servers provide both CLI commands for direct access and natural language querying through AI assistants. Use <code>mcp --help</code> for complete command documentation.
+            </p>
+        </div>
+    </div>
+</div>
+
 <div class="section section-alt">
     <div class="container">
         <div class="section-title">
