@@ -23,6 +23,7 @@ company:
 nav:
   - { title: "Home", url: "/" }
   - { title: "Value Proposition", url: "/value-proposition" }
+  - { title: "Use Cases", url: "/use-cases" }
   - { title: "Quick Start", url: "/quick-start" }
   - { title: "MCP Servers", url: "/servers" }
   - { title: "Best Practices", url: "/best-practices" }
