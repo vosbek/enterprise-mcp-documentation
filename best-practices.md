@@ -71,7 +71,8 @@ description: Enterprise security and configuration best practices for MCP server
         <div class="card-grid">
             <div class="card">
                 <h3>⚡ Connection Management</h3>
-                <div class="code-block"># Configure connection pooling
+                <div class="code-block">
+                    <pre><code class="language-yaml"># Configure connection pooling
 database:
   pool_size: 20
   pool_timeout: 30s
@@ -81,12 +82,14 @@ database:
 timeouts:
   query: 30s
   connection: 10s
-  idle: 300s</div>
+  idle: 300s</code></pre>
+                </div>
             </div>
             
             <div class="card">
                 <h3>🗄️ Caching Strategies</h3>
-                <div class="code-block"># Enable intelligent caching
+                <div class="code-block">
+                    <pre><code class="language-yaml"># Enable intelligent caching
 cache:
   enabled: true
   ttl: 3600  # 1 hour
@@ -96,12 +99,14 @@ cache:
 cache_patterns:
   - "SELECT * FROM users WHERE id = ?"
   - "repository metadata"
-  - "SharePoint document lists"</div>
+  - "SharePoint document lists"</code></pre>
+                </div>
             </div>
             
             <div class="card">
                 <h3>📈 Monitoring & Alerting</h3>
-                <div class="code-block"># Configure health checks
+                <div class="code-block">
+                    <pre><code class="language-yaml"># Configure health checks
 health_checks:
   interval: 30s
   timeout: 5s
@@ -112,7 +117,8 @@ alerts:
   - name: "High Response Time"
     condition: "response_time > 5s"
   - name: "Connection Pool Full"
-    condition: "pool_utilization > 90%"</div>
+    condition: "pool_utilization > 90%"</code></pre>
+                </div>
             </div>
         </div>
     </div>
@@ -128,7 +134,8 @@ alerts:
         <div class="card">
             <h3>Environment-Specific Configurations</h3>
             <p>Separate configurations for development, staging, and production environments:</p>
-            <div class="code-block"># Development environment
+            <div class="code-block">
+                <pre><code class="language-yaml"># Development environment
 mcp-config-dev.yaml:
   database:
     host: dev-db.company.com
@@ -141,13 +148,15 @@ mcp-config-prod.yaml:
     host: prod-db.company.com
     readonly: true
     ssl_mode: require
-    connection_pool: 50</div>
+    connection_pool: 50</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Secret Management</h3>
             <p>Use enterprise secret management systems for sensitive configuration:</p>
-            <div class="code-block"># Use HashiCorp Vault or similar
+            <div class="code-block">
+                <pre><code class="language-yaml"># Use HashiCorp Vault or similar
 database:
   connection_string: "vault:secret/mcp/database#connection_string"
   
@@ -155,7 +164,8 @@ github:
   token: "vault:secret/mcp/github#api_token"
   
 sharepoint:
-  client_secret: "vault:secret/mcp/sharepoint#client_secret"</div>
+  client_secret: "vault:secret/mcp/sharepoint#client_secret"</code></pre>
+            </div>
         </div>
     </div>
 </div>
