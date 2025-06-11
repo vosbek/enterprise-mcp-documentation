@@ -73,13 +73,13 @@ description: Enterprise GitHub integration for repository browsing and issue tra
             <h3>Step 1: Install the GitHub MCP Server</h3>
             <p>Install the GitHub MCP server on your development machine:</p>
             
-```bash
-# Install the GitHub MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the GitHub MCP server
 npm install -g @mcp/github-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -108,8 +108,8 @@ mcp --version
             <h3>Step 3: Configure Your GitHub Connection</h3>
             <p>Set up the connection using your token:</p>
             
-```bash
-# Replace these with your actual values
+            <div class="code-block">
+                <pre><code class="language-bash"># Replace these with your actual values
 export GITHUB_TOKEN="ghp_your_actual_token_here"
 export GITHUB_URL="https://github.company.com"
 export GITHUB_ORG="your-company-org"
@@ -119,16 +119,16 @@ mcp config github \
   --token $GITHUB_TOKEN \
   --url $GITHUB_URL \
   --organization $GITHUB_ORG \
-  --readonly
-```
+  --readonly</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test Your Connection</h3>
             <p>Verify everything is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test github
 
 # Verify authentication
@@ -136,8 +136,8 @@ mcp auth verify github
 
 # If successful, you should see:
 # ✅ GitHub connection successful
-# ✅ Organization access verified
-```
+# ✅ Organization access verified</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -171,24 +171,24 @@ mcp auth verify github
             <p>You can also query GitHub directly from your terminal:</p>
             
             <h4>List repositories:</h4>
-```bash
-mcp query github "repositories in organization company-org"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query github "repositories in organization company-org"</code></pre>
+            </div>
 
             <h4>Find specific issues:</h4>
-```bash
-mcp query github "open issues labeled 'bug' in repository 'main-app'"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query github "open issues labeled 'bug' in repository 'main-app'"</code></pre>
+            </div>
 
             <h4>Search for code patterns:</h4>
-```bash
-mcp query github "search code 'function authenticate' in organization"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query github "search code 'function authenticate' in organization"</code></pre>
+            </div>
 
             <h4>Get pull request details:</h4>
-```bash
-mcp query github "pull requests merged last week in repository 'api-service'"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query github "pull requests merged last week in repository 'api-service'"</code></pre>
+            </div>
         </div>
         
         <div class="card">

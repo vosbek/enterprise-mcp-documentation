@@ -63,13 +63,13 @@ description: Local development environment file system access
             <h3>Step 1: Install the File System MCP Server</h3>
             <p>Install the File System MCP server on your development machine:</p>
             
-```bash
-# Install the File System MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the File System MCP server
 npm install -g @mcp/filesystem-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -90,8 +90,8 @@ mcp --version
             <h3>Step 3: Configure Allowed Directories</h3>
             <p>Set up the file system access with proper security restrictions:</p>
             
-```bash
-# Set your workspace paths (adjust to your actual paths)
+            <div class="code-block">
+                <pre><code class="language-bash"># Set your workspace paths (adjust to your actual paths)
 export WORKSPACE_DIR="$HOME/projects"
 export TOOLS_DIR="/opt/company/tools"
 export CONFIG_DIR="$HOME/.config/development"
@@ -101,16 +101,16 @@ mcp config filesystem \
   --workspace $WORKSPACE_DIR \
   --allowed-paths "$WORKSPACE_DIR,$TOOLS_DIR,$CONFIG_DIR" \
   --readonly-mode true \
-  --exclude-patterns "*.log,*.tmp,.env,node_modules"
-```
+  --exclude-patterns "*.log,*.tmp,.env,node_modules"</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test File System Access</h3>
             <p>Verify that the file system integration is working correctly:</p>
             
-```bash
-# Test workspace access
+            <div class="code-block">
+                <pre><code class="language-bash"># Test workspace access
 mcp test filesystem --workspace-check
 
 # Verify permissions
@@ -119,16 +119,16 @@ mcp auth verify filesystem
 # If successful, you should see:
 # ✅ File system access configured
 # ✅ Workspace directory accessible
-# ✅ Security restrictions applied
-```
+# ✅ Security restrictions applied</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 5: Configure Security Exclusions</h3>
             <p>Set up patterns to exclude sensitive files and directories:</p>
             
-```bash
-# Add security exclusions
+            <div class="code-block">
+                <pre><code class="language-bash"># Add security exclusions
 mcp config filesystem exclude-add \
   --patterns ".env,.env.*,*.key,*.pem,*.p12" \
   --reason "Exclude sensitive credential files"
@@ -141,8 +141,8 @@ mcp config filesystem exclude-add \
 # Exclude log and cache files
 mcp config filesystem exclude-add \
   --patterns "*.log,*.cache,.DS_Store,Thumbs.db" \
-  --reason "Exclude system and log files"
-```
+  --reason "Exclude system and log files"</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -176,24 +176,24 @@ mcp config filesystem exclude-add \
             <p>You can also query your file system directly from your terminal:</p>
             
             <h4>Navigate project structure:</h4>
-```bash
-mcp query filesystem "show project structure for current workspace"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query filesystem "show project structure for current workspace"</code></pre>
+            </div>
 
             <h4>Find configuration files:</h4>
-```bash
-mcp query filesystem "find all configuration files in project"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query filesystem "find all configuration files in project"</code></pre>
+            </div>
 
             <h4>Search for code patterns:</h4>
-```bash
-mcp query filesystem "search for 'TODO' comments in source files"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query filesystem "search for 'TODO' comments in source files"</code></pre>
+            </div>
 
             <h4>Find specific file types:</h4>
-```bash
-mcp query filesystem "list all Python files in the src directory"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query filesystem "list all Python files in the src directory"</code></pre>
+            </div>
         </div>
     </div>
 </div>

@@ -73,13 +73,13 @@ description: Enterprise SharePoint integration for document search and retrieval
             <h3>Step 1: Install the SharePoint MCP Server</h3>
             <p>Install the SharePoint MCP server on your development machine:</p>
             
-```bash
-# Install the SharePoint MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the SharePoint MCP server
 npm install -g @mcp/sharepoint-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -105,8 +105,8 @@ mcp --version
             <h3>Step 3: Configure SharePoint Connection</h3>
             <p>Use the credentials your IT admin provided:</p>
             
-```bash
-# Set your credentials (replace with actual values from IT)
+            <div class="code-block">
+                <pre><code class="language-bash"># Set your credentials (replace with actual values from IT)
 export SHAREPOINT_CLIENT_ID="your-client-id-here"
 export SHAREPOINT_CLIENT_SECRET="your-client-secret-here"
 export SHAREPOINT_TENANT_ID="your-tenant-id-here"
@@ -117,16 +117,16 @@ mcp config sharepoint \
   --tenant-url $SHAREPOINT_URL \
   --client-id $SHAREPOINT_CLIENT_ID \
   --client-secret $SHAREPOINT_CLIENT_SECRET \
-  --tenant-id $SHAREPOINT_TENANT_ID
-```
+  --tenant-id $SHAREPOINT_TENANT_ID</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test Your Connection</h3>
             <p>Verify everything is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test sharepoint
 
 # Verify authentication
@@ -134,13 +134,14 @@ mcp auth verify sharepoint
 
 # If successful, you should see:
 # ✅ SharePoint connection successful
-# ✅ Site access verified
-```
+# ✅ Site access verified</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Site-Specific Configuration</h3>
-            <div class="code-block"># Configure specific sites for access
+            <div class="code-block">
+                <pre><code class="language-bash"># Configure specific sites for access
 mcp config sharepoint sites add \
   --url https://company.sharepoint.com/sites/engineering \
   --name "Engineering Documents"
@@ -153,7 +154,8 @@ mcp config sharepoint sites add \
 mcp config sharepoint libraries add \
   --site-url https://company.sharepoint.com/sites/engineering \
   --library "Shared Documents" \
-  --recursive true</div>
+  --recursive true</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -168,18 +170,21 @@ mcp config sharepoint libraries add \
         <div class="card">
             <h3>GitHub Copilot Integration</h3>
             <p>Ask GitHub Copilot questions about your SharePoint documents:</p>
-            <div class="code-block"># Example questions for Copilot:
+            <div class="code-block">
+                <pre><code># Example questions for Copilot:
 "Find the latest HR policy documents about remote work"
 "What engineering standards documents were updated this month?"
 "Show me project documentation for the authentication system"
 "Find presentation templates in the marketing site"
 "What are the most downloaded documents in the legal library?"
-"Search for documents containing 'API security guidelines'"</div>
+"Search for documents containing 'API security guidelines'"</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Document Search & Retrieval</h3>
-            <div class="code-block"># Search for documents by content
+            <div class="code-block">
+                <pre><code class="language-bash"># Search for documents by content
 mcp query sharepoint "search documents containing 'authentication API'"
 
 # Find documents by author
@@ -189,12 +194,14 @@ mcp query sharepoint "find documents created by 'john.doe@company.com'"
 mcp query sharepoint "recent documents from engineering site last 7 days"
 
 # Search within specific library
-mcp query sharepoint "search 'security policy' in HR library"</div>
+mcp query sharepoint "search 'security policy' in HR library"</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Advanced Document Analysis</h3>
-            <div class="code-block"># Analyze document trends
+            <div class="code-block">
+                <pre><code class="language-bash"># Analyze document trends
 mcp query sharepoint "
   document activity analysis for last quarter including:
   - most accessed documents
@@ -210,7 +217,8 @@ mcp query sharepoint "
   - missing metadata fields
   - external sharing permissions
   - documents requiring review
-"</div>
+"</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -266,7 +274,8 @@ mcp query sharepoint "
         <div class="card-grid">
             <div class="card">
                 <h3>🚀 Caching Strategy</h3>
-                <div class="code-block"># Configure intelligent caching
+                <div class="code-block">
+                    <pre><code class="language-yaml"># Configure intelligent caching
 cache:
   enabled: true
   ttl: 1800  # 30 minutes
@@ -277,12 +286,14 @@ cache_patterns:
   - "document metadata"
   - "site navigation"
   - "user permissions"
-  - "search results"</div>
+  - "search results"</code></pre>
+                </div>
             </div>
             
             <div class="card">
                 <h3>⚡ Query Optimization</h3>
-                <div class="code-block"># Optimize search queries
+                <div class="code-block">
+                    <pre><code class="language-yaml"># Optimize search queries
 search:
   batch_size: 50
   max_results: 1000
@@ -293,7 +304,8 @@ scopes:
   - name: "engineering"
     sites: ["https://company.sharepoint.com/sites/engineering"]
   - name: "policies"  
-    sites: ["https://company.sharepoint.com/sites/hr"]</div>
+    sites: ["https://company.sharepoint.com/sites/hr"]</code></pre>
+                </div>
             </div>
         </div>
     </div>
@@ -310,22 +322,26 @@ scopes:
             <div class="card">
                 <h3>🔑 Authentication Problems</h3>
                 <p><strong>Issue:</strong> 401/403 authentication errors</p>
-                <div class="code-block"># Check Azure AD app permissions
+                <div class="code-block">
+                    <pre><code class="language-bash"># Check Azure AD app permissions
 mcp auth verify sharepoint --verbose
 
 # Test client credentials
 curl -X POST https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token \
-  -d "client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&scope=https://graph.microsoft.com/.default&grant_type=client_credentials"</div>
+  -d "client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&scope=https://graph.microsoft.com/.default&grant_type=client_credentials"</code></pre>
+                </div>
             </div>
             
             <div class="card">
                 <h3>🔍 Search Issues</h3>
                 <p><strong>Issue:</strong> No search results or slow queries</p>
-                <div class="code-block"># Test search connectivity
+                <div class="code-block">
+                    <pre><code class="language-bash"># Test search connectivity
 mcp query sharepoint "test search connection"
 
 # Check search service health
-mcp status sharepoint --search-service</div>
+mcp status sharepoint --search-service</code></pre>
+                </div>
             </div>
         </div>
     </div>

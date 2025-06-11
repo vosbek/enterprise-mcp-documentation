@@ -63,13 +63,13 @@ description: Service catalog integration for enterprise development platforms
             <h3>Step 1: Install the Backstage MCP Server</h3>
             <p>Install the Backstage MCP server on your development machine:</p>
             
-```bash
-# Install the Backstage MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the Backstage MCP server
 npm install -g @mcp/backstage-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -96,8 +96,8 @@ mcp --version
             <h3>Step 3: Configure Backstage Connection</h3>
             <p>Set up the connection using your credentials:</p>
             
-```bash
-# Set your credentials (replace with actual values from platform team)
+            <div class="code-block">
+                <pre><code class="language-bash"># Set your credentials (replace with actual values from platform team)
 export BACKSTAGE_URL="https://backstage.company.com"
 export BACKSTAGE_TOKEN="your-backstage-token-here"
 export BACKSTAGE_NAMESPACE="company"
@@ -107,16 +107,16 @@ mcp config backstage \
   --url $BACKSTAGE_URL \
   --token $BACKSTAGE_TOKEN \
   --namespace $BACKSTAGE_NAMESPACE \
-  --readonly
-```
+  --readonly</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test Your Connection</h3>
             <p>Verify everything is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test backstage
 
 # Verify catalog access
@@ -125,16 +125,16 @@ mcp auth verify backstage
 # If successful, you should see:
 # ✅ Backstage connection successful
 # ✅ Service catalog access verified
-# ✅ API permissions confirmed
-```
+# ✅ API permissions confirmed</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 5: Configure Service Filters (Optional)</h3>
             <p>If you want to focus on specific services or components:</p>
             
-```bash
-# Filter by specific service types
+            <div class="code-block">
+                <pre><code class="language-bash"># Filter by specific service types
 mcp config backstage filters add \
   --kind "Component" \
   --type "service,website,library"
@@ -145,8 +145,8 @@ mcp config backstage filters add \
 
 # Filter by lifecycle stage
 mcp config backstage filters add \
-  --lifecycle "production,experimental"
-```
+  --lifecycle "production,experimental"</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -180,24 +180,24 @@ mcp config backstage filters add \
             <p>You can also query Backstage directly from your terminal:</p>
             
             <h4>Query service catalog:</h4>
-```bash
-mcp query backstage "list all microservices in production"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query backstage "list all microservices in production"</code></pre>
+            </div>
 
             <h4>Find service documentation:</h4>
-```bash
-mcp query backstage "find API documentation for authentication service"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query backstage "find API documentation for authentication service"</code></pre>
+            </div>
 
             <h4>Get service dependencies:</h4>
-```bash
-mcp query backstage "show dependencies for payment-service"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query backstage "show dependencies for payment-service"</code></pre>
+            </div>
 
             <h4>Search by owner:</h4>
-```bash
-mcp query backstage "list all services owned by team-backend"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query backstage "list all services owned by team-backend"</code></pre>
+            </div>
         </div>
     </div>
 </div>

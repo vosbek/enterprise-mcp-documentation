@@ -63,13 +63,13 @@ description: Design collaboration platform integration for enterprise teams
             <h3>Step 1: Install the Figma MCP Server</h3>
             <p>Install the Figma MCP server on your development machine:</p>
             
-```bash
-# Install the Figma MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the Figma MCP server
 npm install -g @mcp/figma-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -106,8 +106,8 @@ mcp --version
             <h3>Step 4: Configure Your Figma Connection</h3>
             <p>Set up the connection using your token and team information:</p>
             
-```bash
-# Set your credentials (replace with actual values)
+            <div class="code-block">
+                <pre><code class="language-bash"># Set your credentials (replace with actual values)
 export FIGMA_ACCESS_TOKEN="figd_your_token_here"
 export FIGMA_TEAM_ID="your-team-id-here"
 export FIGMA_PROJECTS="Design System,Mobile App,Web Platform"
@@ -117,16 +117,16 @@ mcp config figma \
   --token $FIGMA_ACCESS_TOKEN \
   --team-id $FIGMA_TEAM_ID \
   --projects $FIGMA_PROJECTS \
-  --readonly
-```
+  --readonly</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 5: Test Your Connection</h3>
             <p>Verify everything is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test figma
 
 # Verify team access
@@ -135,8 +135,8 @@ mcp auth verify figma
 # If successful, you should see:
 # ✅ Figma connection successful
 # ✅ Team access verified
-# ✅ Project permissions confirmed
-```
+# ✅ Project permissions confirmed</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -170,24 +170,24 @@ mcp auth verify figma
             <p>You can also query Figma directly from your terminal:</p>
             
             <h4>Find design components:</h4>
-```bash
-mcp query figma "find button components in design system"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query figma "find button components in design system"</code></pre>
+            </div>
 
             <h4>List project files:</h4>
-```bash
-mcp query figma "list all files in Mobile App project"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query figma "list all files in Mobile App project"</code></pre>
+            </div>
 
             <h4>Search for design patterns:</h4>
-```bash
-mcp query figma "search for navigation patterns across projects"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query figma "search for navigation patterns across projects"</code></pre>
+            </div>
 
             <h4>Get design specifications:</h4>
-```bash
-mcp query figma "show design specs for login screen component"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query figma "show design specs for login screen component"</code></pre>
+            </div>
         </div>
     </div>
 </div>

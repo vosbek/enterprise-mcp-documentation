@@ -73,13 +73,13 @@ description: IT service management platform integration for enterprise operation
             <h3>Step 1: Install the ServiceNow MCP Server</h3>
             <p>Install the ServiceNow MCP server on your development machine:</p>
             
-```bash
-# Install the ServiceNow MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the ServiceNow MCP server
 npm install -g @mcp/servicenow-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -106,8 +106,8 @@ mcp --version
             <h3>Step 3: Configure ServiceNow Connection</h3>
             <p>Set up the connection using your credentials:</p>
             
-```bash
-# Set your credentials (replace with actual values from IT)
+            <div class="code-block">
+                <pre><code class="language-bash"># Set your credentials (replace with actual values from IT)
 export SERVICENOW_INSTANCE="https://company.service-now.com"
 export SERVICENOW_USERNAME="your-username"
 export SERVICENOW_PASSWORD="your-password"
@@ -119,16 +119,16 @@ mcp config servicenow \
   --username $SERVICENOW_USERNAME \
   --password $SERVICENOW_PASSWORD \
   --tables $SERVICENOW_TABLES \
-  --readonly
-```
+  --readonly</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test Your Connection</h3>
             <p>Verify everything is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test servicenow
 
 # Verify table access
@@ -137,8 +137,8 @@ mcp auth verify servicenow
 # If successful, you should see:
 # ✅ ServiceNow connection successful
 # ✅ Table access verified
-# ✅ Read permissions confirmed
-```
+# ✅ Read permissions confirmed</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -172,24 +172,24 @@ mcp auth verify servicenow
             <p>You can also query ServiceNow directly from your terminal:</p>
             
             <h4>Query open incidents:</h4>
-```bash
-mcp query servicenow "show all critical incidents assigned to IT operations"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query servicenow "show all critical incidents assigned to IT operations"</code></pre>
+            </div>
 
             <h4>Find service requests:</h4>
-```bash
-mcp query servicenow "list pending service requests for my department"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query servicenow "list pending service requests for my department"</code></pre>
+            </div>
 
             <h4>Track change requests:</h4>
-```bash
-mcp query servicenow "show change requests scheduled for this week"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query servicenow "show change requests scheduled for this week"</code></pre>
+            </div>
 
             <h4>Search specific incident:</h4>
-```bash
-mcp query servicenow "show details for incident INC0012345"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query servicenow "show details for incident INC0012345"</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -207,11 +207,11 @@ mcp query servicenow "show details for incident INC0012345"
                 <p>Integrate incident management with development workflows:</p>
                 
                 <p><strong>Example Copilot questions:</strong></p>
-```
-"Show me all P1 incidents related to authentication service"
+                <div class="code-block">
+                    <pre><code>"Show me all P1 incidents related to authentication service"
 "What incidents were resolved by my team this month?"
-"Find incidents with similar symptoms to current issue"
-```
+"Find incidents with similar symptoms to current issue"</code></pre>
+                </div>
             </div>
             
             <div class="card">
@@ -219,11 +219,11 @@ mcp query servicenow "show details for incident INC0012345"
                 <p>Track deployment and change management:</p>
                 
                 <p><strong>Example queries:</strong></p>
-```
-"Show change requests for production deployment"
+                <div class="code-block">
+                    <pre><code>"Show change requests for production deployment"
 "What approvals are needed for database migration?"
-"List all changes scheduled for maintenance window"
-```
+"List all changes scheduled for maintenance window"</code></pre>
+                </div>
             </div>
         </div>
     </div>

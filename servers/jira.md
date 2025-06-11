@@ -63,13 +63,13 @@ description: Enterprise project management and issue tracking integration
             <h3>Step 1: Install the Jira MCP Server</h3>
             <p>Install the Jira MCP server on your development machine:</p>
             
-```bash
-# Install the Jira MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the Jira MCP server
 npm install -g @mcp/jira-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -105,8 +105,8 @@ mcp --version
             <h3>Step 4: Configure Your Jira Connection</h3>
             <p>Set up the connection using your credentials:</p>
             
-```bash
-# Set your credentials (replace with actual values)
+            <div class="code-block">
+                <pre><code class="language-bash"># Set your credentials (replace with actual values)
 export JIRA_URL="https://company.atlassian.net"
 export JIRA_USERNAME="your-email@company.com"
 export JIRA_API_TOKEN="your-api-token-here"
@@ -118,16 +118,16 @@ mcp config jira \
   --username $JIRA_USERNAME \
   --api-token $JIRA_API_TOKEN \
   --project-keys $JIRA_PROJECTS \
-  --readonly
-```
+  --readonly</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 5: Test Your Connection</h3>
             <p>Verify everything is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test jira
 
 # Verify authentication
@@ -136,8 +136,8 @@ mcp auth verify jira
 # If successful, you should see:
 # ✅ Jira connection successful
 # ✅ Project access verified
-# ✅ API permissions confirmed
-```
+# ✅ API permissions confirmed</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -171,24 +171,24 @@ mcp auth verify jira
             <p>You can also query Jira directly from your terminal:</p>
             
             <h4>Query open issues:</h4>
-```bash
-mcp query jira "show all open bugs assigned to my team"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query jira "show all open bugs assigned to my team"</code></pre>
+            </div>
 
             <h4>Find project status:</h4>
-```bash
-mcp query jira "get sprint progress for project PROJ"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query jira "get sprint progress for project PROJ"</code></pre>
+            </div>
 
             <h4>Search using JQL (Jira Query Language):</h4>
-```bash
-mcp query jira "project = PROJ AND status = 'In Progress'"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query jira "project = PROJ AND status = 'In Progress'"</code></pre>
+            </div>
 
             <h4>Get issue details:</h4>
-```bash
-mcp query jira "show details for issue PROJ-123"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query jira "show details for issue PROJ-123"</code></pre>
+            </div>
         </div>
     </div>
 </div>

@@ -63,13 +63,13 @@ description: Custom server for enterprise API ecosystem integration
             <h3>Step 1: Install the Internal API MCP Server</h3>
             <p>Install the Internal API MCP server on your development machine:</p>
             
-```bash
-# Install the Internal API MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the Internal API MCP server
 npm install -g @mcp/internal-api-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -90,44 +90,44 @@ mcp --version
             <p>Set up connections to your internal APIs:</p>
             
             <h4>For OAuth2-protected APIs:</h4>
-```bash
-# Configure OAuth2 API endpoint
+            <div class="code-block">
+                <pre><code class="language-bash"># Configure OAuth2 API endpoint
 mcp config internal-api add \
   --name "user-service" \
   --url https://api.company.com/users \
   --auth-type oauth2 \
   --client-id "your-client-id" \
   --client-secret "your-client-secret" \
-  --scope "read:users"
-```
+  --scope "read:users"</code></pre>
+            </div>
 
             <h4>For API Key-protected services:</h4>
-```bash
-# Configure API key endpoint
+            <div class="code-block">
+                <pre><code class="language-bash"># Configure API key endpoint
 mcp config internal-api add \
   --name "payment-service" \
   --url https://api.company.com/payments \
   --auth-type apikey \
   --api-key "your-api-key-here" \
-  --header-name "X-API-Key"
-```
+  --header-name "X-API-Key"</code></pre>
+            </div>
 
             <h4>For public internal APIs:</h4>
-```bash
-# Configure public endpoint
+            <div class="code-block">
+                <pre><code class="language-bash"># Configure public endpoint
 mcp config internal-api add \
   --name "health-check" \
   --url https://api.company.com/health \
-  --auth-type none
-```
+  --auth-type none</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test Your API Connections</h3>
             <p>Verify that your API connections are working:</p>
             
-```bash
-# Test all configured APIs
+            <div class="code-block">
+                <pre><code class="language-bash"># Test all configured APIs
 mcp test internal-api
 
 # Test specific API endpoint
@@ -136,16 +136,16 @@ mcp test internal-api --endpoint user-service
 # If successful, you should see:
 # ✅ user-service: Connected successfully
 # ✅ payment-service: Connected successfully
-# ✅ health-check: Connected successfully
-```
+# ✅ health-check: Connected successfully</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 5: Import API Documentation (Optional)</h3>
             <p>If your APIs have OpenAPI/Swagger documentation, import them for better integration:</p>
             
-```bash
-# Import OpenAPI specification
+            <div class="code-block">
+                <pre><code class="language-bash"># Import OpenAPI specification
 mcp config internal-api import-openapi \
   --name "user-service" \
   --spec-url https://api.company.com/users/swagger.json
@@ -153,8 +153,8 @@ mcp config internal-api import-openapi \
 # Import from local file
 mcp config internal-api import-openapi \
   --name "payment-service" \
-  --spec-file ./api-specs/payment-api.yml
-```
+  --spec-file ./api-specs/payment-api.yml</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -188,24 +188,24 @@ mcp config internal-api import-openapi \
             <p>You can also query your APIs directly from your terminal:</p>
             
             <h4>Query user information:</h4>
-```bash
-mcp query internal-api "get user details for employee ID 12345"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query internal-api "get user details for employee ID 12345"</code></pre>
+            </div>
 
             <h4>Search across multiple APIs:</h4>
-```bash
-mcp query internal-api "find all APIs related to payment processing"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query internal-api "find all APIs related to payment processing"</code></pre>
+            </div>
 
             <h4>Get API health status:</h4>
-```bash
-mcp query internal-api "show health status for all registered APIs"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query internal-api "show health status for all registered APIs"</code></pre>
+            </div>
 
             <h4>List available endpoints:</h4>
-```bash
-mcp query internal-api "list all available endpoints for user-service"
-```
+            <div class="code-block">
+                <pre><code class="language-bash">mcp query internal-api "list all available endpoints for user-service"</code></pre>
+            </div>
         </div>
     </div>
 </div>
