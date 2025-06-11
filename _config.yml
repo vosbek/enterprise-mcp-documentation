@@ -1,5 +1,5 @@
 title: Enterprise MCP Documentation
-description: Model Context Protocol (MCP) Server Implementation Guide for Enterprise Development
+description: Model Context Protocol Integration for Fortune 50 Enterprise Development
 url: https://vosbek.github.io/enterprise-mcp-documentation
 
 # Jekyll settings
@@ -13,18 +13,30 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# SEO and meta
-lang: en-US
-author: Enterprise Development Tools Team
-
-# Custom variables
+# Company info
 company:
-  name: "Enterprise Organization"
-  domain: "company.com"
+  name: "Enterprise Insurance & Finance"
+  type: "Fortune 50 Company"
+  employees: "20,000+"
   
-mcp:
-  version: "1.0"
-  last_updated: "June 2025"
+# Navigation
+nav:
+  - { title: "Home", url: "/" }
+  - { title: "Quick Start", url: "/quick-start" }
+  - { title: "MCP Servers", url: "/servers" }
+  - { title: "Best Practices", url: "/best-practices" }
+
+# MCP Servers
+mcp_servers:
+  - { name: "Database", icon: "🗄️", desc: "Oracle, Snowflake, Postgres, RDS - read-only queries" }
+  - { name: "GitHub", icon: "📱", desc: "Repository browsing, issue tracking" }
+  - { name: "SharePoint", icon: "📄", desc: "Document search and retrieval" }
+  - { name: "Backstage.io", icon: "🏗️", desc: "Service catalog integration" }
+  - { name: "Internal API", icon: "🔗", desc: "Custom server for API ecosystem" }
+  - { name: "File System", icon: "📁", desc: "Local development environment access" }
+  - { name: "Jira", icon: "📋", desc: "Project management and issue tracking" }
+  - { name: "Figma", icon: "🎨", desc: "Design collaboration platform" }
+  - { name: "ServiceNow", icon: "🛠️", desc: "IT service management" }
 
 # Exclude files
 exclude:
@@ -35,8 +47,13 @@ exclude:
   - .sass-cache
   - .jekyll-cache
   - README.md
+  - PROJECT_SUMMARY.md
+  - install-mcp-servers.sh
+  - mcp-server-config.json
+  - setup-mcp-server.md
+  - .env.example
 
-# Default layout for all pages
+# Default layout
 defaults:
   - scope:
       path: ""

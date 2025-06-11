@@ -1,356 +1,374 @@
 ---
-layout: default
-title: Troubleshooting Guide
-description: Common issues, solutions, and debugging techniques for MCP server implementations
+title: Troubleshooting
+description: Common issues and solutions for enterprise MCP server deployments
 ---
 
-<!-- Page Header -->
-<div class="page-header">
-  <div class="page-header-container">
-    <h1 class="page-title">Troubleshooting Guide</h1>
-    <p class="page-description">
-      Comprehensive troubleshooting guide for MCP server issues, debugging techniques, and solutions for common problems in enterprise environments.
-    </p>
-  </div>
+<div class="hero">
+    <div class="container">
+        <h1>Troubleshooting Guide</h1>
+        <p>Common issues and solutions for Model Context Protocol servers in enterprise environments.</p>
+    </div>
 </div>
 
-<!-- Documentation Content -->
-<div class="doc-content">
-
-  <div style="display: inline-flex; align-items: center; gap: 8px; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 32px;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"/>
-    </svg>
-    Diagnostic & Resolution Guide
-  </div>
-
-  ## Quick Diagnostic Checklist
-
-  <div style="background: #f0f9ff; border: 1px solid #0369a1; border-radius: 12px; padding: 24px; margin: 24px 0;">
-    <h4 style="margin: 0 0 16px 0; color: #0369a1; font-weight: 600;">Before You Start Troubleshooting</h4>
-    <div style="display: grid; gap: 12px;">
-      <label style="display: flex; align-items: center; gap: 12px; color: #1e40af; cursor: pointer;">
-        <input type="checkbox" style="width: 18px; height: 18px;">
-        <span>VPN connection is active and stable</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: #1e40af; cursor: pointer;">
-        <input type="checkbox" style="width: 18px; height: 18px;">
-        <span>VSCode is running with latest extensions</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: #1e40af; cursor: pointer;">
-        <input type="checkbox" style="width: 18px; height: 18px;">
-        <span>GitHub Copilot extension is enabled</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: #1e40af; cursor: pointer;">
-        <input type="checkbox" style="width: 18px; height: 18px;">
-        <span>Environment variables are properly set</span>
-      </label>
-    </div>
-  </div>
-
-  ## Common Issues & Solutions
-
-  ### Connection Problems
-
-  <div style="display: grid; gap: 20px; margin: 32px 0;">
-    <details style="padding: 24px; background: white; border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" open>
-      <summary style="font-weight: 600; cursor: pointer; color: var(--text-primary); font-size: 18px; margin-bottom: 16px;">
-        🔗 Database Connection Timeout
-      </summary>
-      <div style="color: var(--text-secondary); line-height: 1.6;">
-        <p style="margin-bottom: 16px;"><strong>Symptoms:</strong> Connection timeouts, "unable to connect" errors, long response times</p>
+<div class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Connection Issues</h2>
+            <p>Resolve connectivity problems with enterprise systems</p>
+        </div>
         
-        <h5 style="margin: 16px 0 8px 0; color: var(--text-primary);">Solutions:</h5>
-        <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 12px 0;">
-          <p style="margin: 0 0 8px 0; font-weight: 500;">1. Verify VPN Connection</p>
-          <div style="background: var(--bg-dark); color: #e5e7eb; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 14px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span style="font-size: 10px; text-transform: uppercase; color: #9ca3af;">Test Command</span>
-              <button onclick="copyToClipboard('ping database-server.internal.company.com')" style="background: var(--primary-color); color: white; border: none; padding: 2px 8px; border-radius: 3px; font-size: 10px; cursor: pointer;">Copy</button>
+        <div class="card-grid">
+            <div class="card">
+                <h3>🔗 Database Connection Failures</h3>
+                <p><strong>Symptoms:</strong> Cannot connect to Oracle, Snowflake, or Postgres databases</p>
+                
+                <h4>Common Causes & Solutions:</h4>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li><strong>Network connectivity:</strong> Verify VPN connection and firewall rules</li>
+                    <li><strong>SSL certificate issues:</strong> Check certificate validity and trust store</li>
+                    <li><strong>Connection string format:</strong> Validate connection parameters</li>
+                    <li><strong>Authentication failure:</strong> Verify credentials and database permissions</li>
+                </ul>
+                
+                <div class="code-block"># Debug database connection
+mcp debug database --connection-test
+mcp logs database --level debug
+
+# Test connectivity manually
+telnet db.company.com 1521
+openssl s_client -connect db.company.com:1521</div>
             </div>
-            ping database-server.internal.company.com
-          </div>
-        </div>
+            
+            <div class="card">
+                <h3>📱 GitHub API Issues</h3>
+                <p><strong>Symptoms:</strong> Cannot access repositories or API rate limits exceeded</p>
+                
+                <h4>Common Causes & Solutions:</h4>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li><strong>Token expiration:</strong> Rotate API tokens regularly</li>
+                    <li><strong>Rate limiting:</strong> Implement request throttling and caching</li>
+                    <li><strong>Permission scope:</strong> Verify token has required repository access</li>
+                    <li><strong>Enterprise GitHub URL:</strong> Check correct GitHub Enterprise URL</li>
+                </ul>
+                
+                <div class="code-block"># Verify GitHub token
+curl -H "Authorization: token $GITHUB_TOKEN" \
+  https://github.company.com/api/v3/user
 
-        <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 12px 0;">
-          <p style="margin: 0 0 8px 0; font-weight: 500;">2. Check Firewall Rules</p>
-          <p style="margin: 0; font-size: 14px;">Ensure ports 1521 (Oracle), 5432 (PostgreSQL), 443 (Snowflake) are accessible</p>
-        </div>
-
-        <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 12px 0;">
-          <p style="margin: 0 0 8px 0; font-weight: 500;">3. Verify Service Account Status</p>
-          <p style="margin: 0; font-size: 14px;">Check if the service account is active and not locked</p>
-        </div>
-      </div>
-    </details>
-
-    <details style="padding: 24px; background: white; border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-      <summary style="font-weight: 600; cursor: pointer; color: var(--text-primary); font-size: 18px; margin-bottom: 16px;">
-        🔐 Authentication Failures
-      </summary>
-      <div style="color: var(--text-secondary); line-height: 1.6;">
-        <p style="margin-bottom: 16px;"><strong>Symptoms:</strong> 401 Unauthorized, "invalid credentials", authentication errors</p>
-        
-        <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 8px; margin: 16px 0;">
-          <strong style="color: #92400e;">⚠️ Most Common Cause:</strong> Expired or incorrect credentials
-        </div>
-
-        <h5 style="margin: 16px 0 8px 0; color: var(--text-primary);">Step-by-Step Resolution:</h5>
-        
-        <div style="display: grid; gap: 16px; margin: 16px 0;">
-          <div style="display: flex; gap: 16px; align-items: flex-start;">
-            <div style="width: 32px; height: 32px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0;">1</div>
-            <div>
-              <h6 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600;">Verify Environment Variables</h6>
-              <div style="background: var(--bg-dark); color: #e5e7eb; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 14px; margin-top: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span style="font-size: 10px; text-transform: uppercase; color: #9ca3af;">Check Variables</span>
-                  <button onclick="copyToClipboard('echo $GITHUB_TOKEN\\necho $DB_PASSWORD')" style="background: var(--primary-color); color: white; border: none; padding: 2px 8px; border-radius: 3px; font-size: 10px; cursor: pointer;">Copy</button>
-                </div>
-                echo $GITHUB_TOKEN<br>echo $DB_PASSWORD
-              </div>
+# Check rate limits
+mcp status github --rate-limits</div>
             </div>
-          </div>
-          
-          <div style="display: flex; gap: 16px; align-items: flex-start;">
-            <div style="width: 32px; height: 32px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0;">2</div>
-            <div>
-              <h6 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600;">Test Credentials Manually</h6>
-              <p style="margin: 0; color: var(--text-secondary); line-height: 1.4;">Try logging into the service directly to verify credentials work</p>
+            
+            <div class="card">
+                <h3>📄 SharePoint Authentication</h3>
+                <p><strong>Symptoms:</strong> SharePoint MCP server returns 401/403 errors</p>
+                
+                <h4>Common Causes & Solutions:</h4>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li><strong>App registration:</strong> Verify Azure AD app permissions</li>
+                    <li><strong>Client secret expiration:</strong> Renew expired client secrets</li>
+                    <li><strong>Site permissions:</strong> Ensure service account has site access</li>
+                    <li><strong>Multi-factor authentication:</strong> Configure app-specific passwords</li>
+                </ul>
+                
+                <div class="code-block"># Test SharePoint authentication
+mcp auth test sharepoint
+mcp config sharepoint --verify-permissions</div>
             </div>
-          </div>
-          
-          <div style="display: flex; gap: 16px; align-items: flex-start;">
-            <div style="width: 32px; height: 32px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0;">3</div>
-            <div>
-              <h6 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600;">Check Token Expiration</h6>
-              <p style="margin: 0; color: var(--text-secondary); line-height: 1.4;">GitHub tokens expire, Jira tokens may be revoked, database passwords may be changed</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </details>
-
-    <details style="padding: 24px; background: white; border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-      <summary style="font-weight: 600; cursor: pointer; color: var(--text-primary); font-size: 18px; margin-bottom: 16px;">
-        ⚡ Performance Issues
-      </summary>
-      <div style="color: var(--text-secondary); line-height: 1.6;">
-        <p style="margin-bottom: 16px;"><strong>Symptoms:</strong> Slow responses, timeouts, high CPU usage, memory leaks</p>
-        
-        <div style="display: grid; gap: 16px; margin: 16px 0;">
-          <div style="background: #f0fdf4; border: 1px solid #10b981; border-radius: 8px; padding: 16px;">
-            <h6 style="margin: 0 0 8px 0; color: #047857; font-weight: 600;">Connection Pool Optimization</h6>
-            <div style="background: var(--bg-dark); color: #e5e7eb; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 14px; margin-top: 8px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 10px; text-transform: uppercase; color: #9ca3af;">Optimal Settings</span>
-                <button onclick="copyToClipboard('{\\n  \\\"DB_POOL_MIN\\\": \\\"1\\\",\\n  \\\"DB_POOL_MAX\\\": \\\"3\\\",\\n  \\\"DB_POOL_IDLE_TIMEOUT\\\": \\\"30000\\\"\\n}')" style="background: var(--primary-color); color: white; border: none; padding: 2px 8px; border-radius: 3px; font-size: 10px; cursor: pointer;">Copy</button>
-              </div>
-              {<br>  "DB_POOL_MIN": "1",<br>  "DB_POOL_MAX": "3",<br>  "DB_POOL_IDLE_TIMEOUT": "30000"<br>}
-            </div>
-          </div>
-
-          <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 16px;">
-            <h6 style="margin: 0 0 8px 0; color: #92400e; font-weight: 600;">Rate Limiting Issues</h6>
-            <p style="margin: 0; color: #92400e; font-size: 14px;">If hitting API rate limits, reduce concurrent requests or implement intelligent caching</p>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <details style="padding: 24px; background: white; border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-      <summary style="font-weight: 600; cursor: pointer; color: var(--text-primary); font-size: 18px; margin-bottom: 16px;">
-        🔧 Configuration Problems
-      </summary>
-      <div style="color: var(--text-secondary); line-height: 1.6;">
-        <p style="margin-bottom: 16px;"><strong>Symptoms:</strong> MCP servers not starting, JSON syntax errors, invalid paths</p>
-        
-        <h5 style="margin: 16px 0 8px 0; color: var(--text-primary);">Configuration Validation</h5>
-        
-        <div style="background: var(--bg-dark); color: #e5e7eb; border-radius: 12px; padding: 24px; margin: 16px 0;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-            <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: #9ca3af;">JSON Validation Script</span>
-            <button onclick="copyToClipboard('#!/bin/bash\\necho \\\"Validating MCP configuration...\\\"\\npython -m json.tool ~/.mcp/mcp-config.json > /dev/null && echo \\\"✅ Valid JSON\\\" || echo \\\"❌ Invalid JSON\\\"')" style="background: var(--primary-color); color: white; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer;">Copy</button>
-          </div>
-          <pre style="margin: 0; background: none; border: none; padding: 0;"><code>#!/bin/bash
-echo "Validating MCP configuration..."
-python -m json.tool ~/.mcp/mcp-config.json > /dev/null && echo "✅ Valid JSON" || echo "❌ Invalid JSON"</code></pre>
-        </div>
-
-        <div style="background: #f8f9fa; border-radius: 8px; padding: 16px; margin: 16px 0;">
-          <h6 style="margin: 0 0 8px 0; color: var(--text-primary); font-weight: 600;">Common Configuration Mistakes:</h6>
-          <ul style="margin: 0; padding-left: 20px; color: var(--text-secondary);">
-            <li style="margin-bottom: 8px;">Missing quotes around environment variable values</li>
-            <li style="margin-bottom: 8px;">Incorrect file paths (use forward slashes even on Windows)</li>
-            <li style="margin-bottom: 8px;">Missing commas between JSON objects</li>
-            <li>Incorrect node_modules path references</li>
-          </ul>
-        </div>
-      </div>
-    </details>
-  </div>
-
-  ---
-
-  ## Debug Mode & Logging
-
-  ### Enable Debug Logging
-
-  <div style="background: var(--bg-dark); color: #e5e7eb; border-radius: 12px; padding: 24px; margin: 24px 0;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-      <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: #9ca3af;">Debug Configuration</span>
-      <button onclick="copyToClipboard('{\\n  \\\"env\\\": {\\n    \\\"DEBUG\\\": \\\"mcp:*\\\",\\n    \\\"LOG_LEVEL\\\": \\\"debug\\\",\\n    \\\"VERBOSE_LOGGING\\\": \\\"true\\\"\\n  }\\n}')" style="background: var(--primary-color); color: white; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer;">Copy</button>
     </div>
-    <pre style="margin: 0; background: none; border: none; padding: 0;"><code>{
-  "env": {
-    "DEBUG": "mcp:*",
-    "LOG_LEVEL": "debug",
-    "VERBOSE_LOGGING": "true"
-  }
-}</code></pre>
-  </div>
-
-  ### Log Analysis
-
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 32px 0;">
-    <div style="padding: 20px; background: white; border: 1px solid var(--border-color); border-radius: 12px;">
-      <h4 style="margin: 0 0 12px 0; color: var(--text-primary);">Connection Logs</h4>
-      <div style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; margin-bottom: 8px; color: #047857;">✅ Connected to database</div>
-      <div style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #dc2626;">❌ Connection timeout after 30s</div>
-    </div>
-
-    <div style="padding: 20px; background: white; border: 1px solid var(--border-color); border-radius: 12px;">
-      <h4 style="margin: 0 0 12px 0; color: var(--text-primary);">Authentication Logs</h4>
-      <div style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; margin-bottom: 8px; color: #047857;">✅ Token validated</div>
-      <div style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #dc2626;">❌ Invalid token format</div>
-    </div>
-
-    <div style="padding: 20px; background: white; border: 1px solid var(--border-color); border-radius: 12px;">
-      <h4 style="margin: 0 0 12px 0; color: var(--text-primary);">API Response Logs</h4>
-      <div style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; margin-bottom: 8px; color: #047857;">✅ GET /repos 200 (120ms)</div>
-      <div style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #dc2626;">❌ GET /repos 429 Rate limited</div>
-    </div>
-  </div>
-
-  ---
-
-  ## Advanced Troubleshooting
-
-  ### Network Diagnostics
-
-  <div style="background: var(--bg-dark); color: #e5e7eb; border-radius: 12px; padding: 24px; margin: 24px 0;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-      <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: #9ca3af;">Network Test Script</span>
-      <button onclick="copyToClipboard('#!/bin/bash\\necho \\\"Testing network connectivity...\\\"\\nping -c 3 github.internet.net\\ntelnet database-server.company.com 1521\\nnslookup jira.company.com')" style="background: var(--primary-color); color: white; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer;">Copy</button>
-    </div>
-    <pre style="margin: 0; background: none; border: none; padding: 0;"><code>#!/bin/bash
-echo "Testing network connectivity..."
-ping -c 3 github.internet.net
-telnet database-server.company.com 1521
-nslookup jira.company.com</code></pre>
-  </div>
-
-  ### System Resource Monitoring
-
-  <div style="display: grid; gap: 16px; margin: 32px 0;">
-    <div style="background: #f0f9ff; border: 1px solid #0369a1; border-radius: 8px; padding: 16px;">
-      <h6 style="margin: 0 0 8px 0; color: #0369a1; font-weight: 600;">Memory Usage</h6>
-      <p style="margin: 0; color: #1e40af; font-size: 14px;">Monitor memory consumption, especially with database connections</p>
-    </div>
-    
-    <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 16px;">
-      <h6 style="margin: 0 0 8px 0; color: #92400e; font-weight: 600;">CPU Performance</h6>
-      <p style="margin: 0; color: #92400e; font-size: 14px;">High CPU usage may indicate inefficient queries or connection issues</p>
-    </div>
-  </div>
-
-  ---
-
-  ## Support Escalation
-
-  ### Internal Support Tiers
-
-  <div style="display: grid; gap: 20px; margin: 32px 0;">
-    <div style="display: flex; gap: 16px; padding: 20px; background: white; border: 1px solid var(--border-color); border-radius: 12px;">
-      <div style="width: 40px; height: 40px; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">1</div>
-      <div>
-        <h4 style="margin: 0 0 8px 0; color: var(--text-primary);">Self-Service</h4>
-        <p style="margin: 0; color: var(--text-secondary);">Check this documentation, restart services, verify configuration</p>
-      </div>
-    </div>
-
-    <div style="display: flex; gap: 16px; padding: 20px; background: white; border: 1px solid var(--border-color); border-radius: 12px;">
-      <div style="width: 40px; height: 40px; background: #0ea5e9; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">2</div>
-      <div>
-        <h4 style="margin: 0 0 8px 0; color: var(--text-primary);">Team Support</h4>
-        <p style="margin: 0; color: var(--text-secondary);">Reach out to your local MCP champions or senior developers</p>
-      </div>
-    </div>
-
-    <div style="display: flex; gap: 16px; padding: 20px; background: white; border: 1px solid var(--border-color); border-radius: 12px;">
-      <div style="width: 40px; height: 40px; background: #f59e0b; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">3</div>
-      <div>
-        <h4 style="margin: 0 0 8px 0; color: var(--text-primary);">IT Support</h4>
-        <p style="margin: 0; color: var(--text-secondary);">Submit service desk ticket for infrastructure or access issues</p>
-      </div>
-    </div>
-  </div>
-
-  ### Information to Include in Support Requests
-
-  <div style="background: #f8f9fa; border-radius: 12px; padding: 24px; margin: 24px 0;">
-    <h4 style="margin: 0 0 16px 0; color: var(--text-primary);">Support Ticket Checklist</h4>
-    <div style="display: grid; gap: 8px;">
-      <label style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary); cursor: pointer;">
-        <input type="checkbox" style="width: 16px; height: 16px;">
-        <span>Detailed error messages and stack traces</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary); cursor: pointer;">
-        <input type="checkbox" style="width: 16px; height: 16px;">
-        <span>MCP configuration file (with credentials redacted)</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary); cursor: pointer;">
-        <input type="checkbox" style="width: 16px; height: 16px;">
-        <span>Steps to reproduce the issue</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary); cursor: pointer;">
-        <input type="checkbox" style="width: 16px; height: 16px;">
-        <span>Environment details (OS, VSCode version, Node.js version)</span>
-      </label>
-      <label style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary); cursor: pointer;">
-        <input type="checkbox" style="width: 16px; height: 16px;">
-        <span>Debug logs and timestamps</span>
-      </label>
-    </div>
-  </div>
-
-  <div style="background: #e8f5e8; border-left: 4px solid var(--accent-color); padding: 16px 20px; border-radius: 8px; margin: 24px 0;">
-    <strong>✅ Remember:</strong> Most issues are resolved quickly with proper diagnostics. Follow the checklist and gather logs before escalating.
-  </div>
-
-  <div style="text-align: center; margin: 48px 0;">
-    <a href="best-practices.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; margin-right: 16px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
-      </svg>
-      Best Practices
-    </a>
-    <a href="servers/" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: white; color: var(--primary-color); border: 2px solid var(--border-color); text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s ease;">
-      View All Servers
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
-      </svg>
-    </a>
-  </div>
-
 </div>
 
-<script>
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(function() {
-    console.log('Copied to clipboard:', text);
-  }, function(err) {
-    console.error('Could not copy text: ', err);
-  });
-}
-</script>
+<div class="section section-alt">
+    <div class="container">
+        <div class="section-title">
+            <h2>Performance Issues</h2>
+            <p>Diagnose and resolve performance bottlenecks</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>🐌 Slow Query Performance</h3>
+                <p><strong>Symptoms:</strong> MCP queries taking longer than expected</p>
+                
+                <h4>Diagnostic Steps:</h4>
+                <div class="code-block"># Enable query profiling
+mcp config database --enable-profiling
+
+# Monitor query performance
+mcp metrics database --queries
+mcp logs database --filter "slow_query"
+
+# Check connection pool status
+mcp status database --connection-pool</div>
+                
+                <h4>Optimization Strategies:</h4>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Increase connection pool size</li>
+                    <li>Enable query result caching</li>
+                    <li>Optimize database indexes</li>
+                    <li>Use read replicas for queries</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>💾 Memory Usage</h3>
+                <p><strong>Symptoms:</strong> High memory consumption or out-of-memory errors</p>
+                
+                <h4>Memory Monitoring:</h4>
+                <div class="code-block"># Check memory usage
+mcp metrics system --memory
+ps aux | grep mcp
+
+# Monitor heap usage (if applicable)
+mcp debug --heap-dump
+mcp config --max-memory 2048M</div>
+                
+                <h4>Memory Optimization:</h4>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Reduce cache size limits</li>
+                    <li>Implement streaming for large results</li>
+                    <li>Tune garbage collection settings</li>
+                    <li>Monitor for memory leaks</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🌐 Network Latency</h3>
+                <p><strong>Symptoms:</strong> High response times due to network delays</p>
+                
+                <h4>Network Diagnostics:</h4>
+                <div class="code-block"># Test network latency
+ping db.company.com
+traceroute github.company.com
+mcp network-test --all-servers
+
+# Check bandwidth utilization
+iftop -i eth0
+mcp metrics network --bandwidth</div>
+                
+                <h4>Latency Reduction:</h4>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Deploy MCP servers closer to data sources</li>
+                    <li>Use CDN for static content</li>
+                    <li>Implement connection keep-alive</li>
+                    <li>Optimize payload sizes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Configuration Problems</h2>
+            <p>Fix common configuration and setup issues</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>⚙️ Invalid Configuration</h3>
+                <p><strong>Symptoms:</strong> MCP servers fail to start or behave unexpectedly</p>
+                
+                <div class="code-block"># Validate configuration
+mcp config validate --all
+mcp config test --dry-run
+
+# Check configuration syntax
+yamllint mcp-config.yaml
+jsonlint mcp-servers.json</div>
+                
+                <p>Common configuration errors:</p>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>YAML indentation issues</li>
+                    <li>Missing required fields</li>
+                    <li>Invalid connection strings</li>
+                    <li>Incorrect file paths</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🔐 SSL/TLS Certificate Issues</h3>
+                <p><strong>Symptoms:</strong> SSL handshake failures or certificate errors</p>
+                
+                <div class="code-block"># Check certificate validity
+openssl x509 -in cert.pem -text -noout
+mcp ssl-check --server database
+
+# Verify certificate chain
+openssl verify -CAfile ca-bundle.crt cert.pem
+
+# Update certificate store
+mcp certs update
+mcp config ssl --ca-bundle /path/to/ca-bundle.crt</div>
+            </div>
+            
+            <div class="card">
+                <h3>🔑 Authentication Configuration</h3>
+                <p><strong>Symptoms:</strong> Authentication failures or permission denied errors</p>
+                
+                <div class="code-block"># Test authentication
+mcp auth verify --all-servers
+mcp auth refresh --server github
+
+# Check token permissions
+mcp auth scope --token $GITHUB_TOKEN
+mcp auth test --server sharepoint --verbose</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-alt">
+    <div class="container">
+        <div class="section-title">
+            <h2>IDE Integration Issues</h2>
+            <p>Resolve problems with VSCode, IntelliJ, and Eclipse integration</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>💻 VSCode Extension Problems</h3>
+                <p><strong>Symptoms:</strong> MCP extension not working or GitHub Copilot integration fails</p>
+                
+                <div class="code-block"># Check extension status
+code --list-extensions | grep mcp
+mcp vscode-status
+
+# Reset extension settings
+code --reset-extensions
+mcp vscode-config --reset</div>
+                
+                <p>Common fixes:</p>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Reload VSCode window</li>
+                    <li>Update MCP extension</li>
+                    <li>Check settings.json configuration</li>
+                    <li>Verify server endpoints</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🔧 GitHub Copilot Integration</h3>
+                <p><strong>Symptoms:</strong> Copilot not using MCP context or giving incorrect suggestions</p>
+                
+                <div class="code-block"># Verify Copilot-MCP connection
+mcp copilot-status
+mcp test-copilot-integration
+
+# Check Copilot logs
+code --enable-logging
+tail -f ~/.vscode/logs/*/copilot.log</div>
+                
+                <p>Troubleshooting steps:</p>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Restart Copilot service</li>
+                    <li>Clear Copilot cache</li>
+                    <li>Verify MCP server status</li>
+                    <li>Check enterprise Copilot settings</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🛠️ IntelliJ/Eclipse Setup</h3>
+                <p><strong>Symptoms:</strong> MCP plugin not loading or functioning properly</p>
+                
+                <div class="code-block"># IntelliJ debugging
+mcp intellij-logs
+mcp plugin-status --ide intellij
+
+# Eclipse debugging  
+mcp eclipse-workspace-check
+mcp plugin-verify --ide eclipse</div>
+                
+                <p>Common solutions:</p>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li>Restart IDE with fresh workspace</li>
+                    <li>Update MCP plugin version</li>
+                    <li>Check Java version compatibility</li>
+                    <li>Verify plugin installation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Debugging & Logging</h2>
+            <p>Comprehensive debugging techniques for MCP issues</p>
+        </div>
+        
+        <div class="card">
+            <h3>Enable Debug Logging</h3>
+            <p>Configure detailed logging for troubleshooting:</p>
+            <div class="code-block"># Enable debug mode
+export MCP_DEBUG=true
+export MCP_LOG_LEVEL=debug
+
+# Start servers with verbose logging
+mcp start --debug --log-file /var/log/mcp.log
+
+# Tail logs in real-time
+tail -f /var/log/mcp.log | grep ERROR
+mcp logs --follow --filter "authentication"</div>
+        </div>
+        
+        <div class="card">
+            <h3>Health Checks & Monitoring</h3>
+            <p>Regular health monitoring and alerting setup:</p>
+            <div class="code-block"># Run comprehensive health check
+mcp health-check --all --verbose
+
+# Set up monitoring dashboard
+mcp monitor --dashboard --port 8080
+
+# Configure alerts
+mcp alerts configure --email admin@company.com
+mcp alerts add --name "server_down" --condition "status != healthy"</div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-alt">
+    <div class="container">
+        <div class="section-title">
+            <h2>Getting Help</h2>
+            <p>Resources for additional support and assistance</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>📞 Internal Support</h3>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li><strong>IT Help Desk:</strong> Submit tickets for infrastructure issues</li>
+                    <li><strong>DevOps Team:</strong> Contact for deployment and configuration help</li>
+                    <li><strong>Security Team:</strong> Consult for authentication and compliance questions</li>
+                    <li><strong>Architecture Team:</strong> Discuss integration patterns and best practices</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>📚 Documentation</h3>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li><strong>Quick Start Guide:</strong> <a href="{{ '/quick-start' | relative_url }}">Step-by-step setup instructions</a></li>
+                    <li><strong>Server Documentation:</strong> <a href="{{ '/servers' | relative_url }}">Individual server configuration guides</a></li>
+                    <li><strong>Best Practices:</strong> <a href="{{ '/best-practices' | relative_url }}">Security and operational guidelines</a></li>
+                    <li><strong>API Reference:</strong> Detailed API documentation and examples</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🤝 Community Resources</h3>
+                <ul style="margin-left: 1.5rem; color: var(--gray-600);">
+                    <li><strong>Internal Forums:</strong> Developer community discussions</li>
+                    <li><strong>Slack Channels:</strong> Real-time chat support (#mcp-support)</li>
+                    <li><strong>Office Hours:</strong> Weekly Q&A sessions with MCP experts</li>
+                    <li><strong>Training Sessions:</strong> Regular workshops and webinars</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
