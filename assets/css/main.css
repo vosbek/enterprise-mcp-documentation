@@ -24,13 +24,21 @@
   --gray-800: #1f2937;
   --gray-900: #111827;
   
-  /* Enhanced colors for better contrast */
-  --sidebar-bg: #f8fafc;
-  --sidebar-border: #e2e8f0;
-  --code-bg: #1e293b;
-  --code-border: #334155;
-  --inline-code-bg: #e2e8f0;
-  --inline-code-color: #475569;
+  /* Enhanced contrast colors */
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #e2e8f0;
+  --bg-tertiary: #cbd5e1;
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #cbd5e1;
+  --card-bg: #ffffff;
+  --code-bg: #0f172a;
+  --code-border: #1e293b;
+  --inline-code-bg: #334155;
+  --inline-code-color: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --accent-bg: #dbeafe;
+  --accent-border: #93c5fd;
   
   /* Layout */
   --max-width: 1200px;
@@ -55,8 +63,9 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
-  color: var(--gray-900);
-  background-color: #ffffff;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background-attachment: fixed;
   display: flex;
   min-height: 100vh;
 }
@@ -66,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 1rem;
-  color: var(--gray-900);
+  color: var(--text-primary);
   letter-spacing: -0.025em;
 }
 
@@ -91,7 +100,7 @@ h4 {
 
 p {
   margin-bottom: 1rem;
-  color: var(--gray-600);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 
@@ -119,12 +128,13 @@ a:hover {
 .sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
-  border-right: 1px solid var(--sidebar-border);
+  border-right: 2px solid var(--sidebar-border);
   position: fixed;
   height: 100vh;
   overflow-y: auto;
   padding: 2rem 0;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: blur(10px);
 }
 
 .sidebar-header {
@@ -302,22 +312,24 @@ a:hover {
 
 /* Cards */
 .card {
-  background: white;
-  border: 1px solid var(--gray-200);
+  background: var(--card-bg);
+  border: 2px solid var(--accent-border);
   border-radius: var(--border-radius);
   padding: 1.5rem;
   transition: all 0.3s ease;
   position: relative;
+  box-shadow: var(--shadow);
 }
 
 .card:hover {
   box-shadow: var(--shadow-xl);
-  border-color: var(--primary-light);
-  transform: translateY(-2px);
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  background: var(--accent-bg);
 }
 
 .card h3 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
@@ -343,9 +355,10 @@ a:hover {
 }
 
 .section-alt {
-  background: linear-gradient(180deg, var(--gray-50) 0%, #ffffff 100%);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-top: 2px solid var(--accent-border);
+  border-bottom: 2px solid var(--accent-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .section-title {
@@ -368,13 +381,25 @@ a:hover {
   color: #e2e8f0;
   padding: 1.25rem;
   border-radius: var(--border-radius);
-  border: 1px solid var(--code-border);
+  border: 2px solid var(--code-border);
   overflow-x: auto;
   margin: 1.5rem 0;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   font-size: 0.875rem;
   line-height: 1.5;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .code-block pre {
@@ -434,8 +459,8 @@ pre code {
 }
 
 .mcp-card {
-  background: white;
-  border: 1px solid var(--gray-200);
+  background: var(--card-bg);
+  border: 2px solid var(--accent-border);
   border-radius: var(--border-radius);
   padding: 1.5rem;
   text-decoration: none;
@@ -443,6 +468,7 @@ pre code {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .mcp-card::before {
@@ -461,7 +487,8 @@ pre code {
   box-shadow: var(--shadow-xl);
   border-color: var(--primary);
   color: inherit;
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  background: var(--accent-bg);
 }
 
 .mcp-card:hover::before {
@@ -481,12 +508,12 @@ pre code {
 
 .mcp-title {
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin: 0;
 }
 
 .mcp-desc {
-  color: var(--gray-600);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   margin: 0;
 }
