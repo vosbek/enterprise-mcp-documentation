@@ -77,13 +77,13 @@ description: Enterprise database connectivity for Oracle, Snowflake, Postgres, a
             <h3>Step 1: Install the Database MCP Server</h3>
             <p>First, install the database MCP server on your development machine:</p>
             
-```bash
-# Install the database MCP server
+            <div class="code-block">
+                <pre><code class="language-bash"># Install the database MCP server
 npm install -g @mcp/database-server
 
 # Verify installation
-mcp --version
-```
+mcp --version</code></pre>
+            </div>
         </div>
         
         <div class="card">
@@ -103,58 +103,58 @@ mcp --version
             <p>Choose your database type and run the appropriate command:</p>
             
             <h4>For Oracle Database:</h4>
-```bash
-mcp config database oracle \
+            <div class="code-block">
+                <pre><code class="language-bash">mcp config database oracle \
   --host oracle.company.com \
   --port 1521 \
   --service-name PROD \
   --username readonly_user \
   --password your_password \
-  --readonly
-```
+  --readonly</code></pre>
+            </div>
 
             <h4>For Snowflake:</h4>
-```bash
-mcp config database snowflake \
+            <div class="code-block">
+                <pre><code class="language-bash">mcp config database snowflake \
   --account company.snowflakecomputing.com \
   --warehouse COMPUTE_WH \
   --database ANALYTICS \
   --username your_username \
-  --password your_password
-```
+  --password your_password</code></pre>
+            </div>
 
             <h4>For PostgreSQL:</h4>
-```bash
-mcp config database postgres \
+            <div class="code-block">
+                <pre><code class="language-bash">mcp config database postgres \
   --host postgres.company.com \
   --port 5432 \
   --database analytics \
   --username readonly_user \
   --password your_password \
-  --ssl-mode require
-```
+  --ssl-mode require</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 4: Test Your Connection</h3>
             <p>Verify that your database connection is working:</p>
             
-```bash
-# Test the connection
+            <div class="code-block">
+                <pre><code class="language-bash"># Test the connection
 mcp test database
 
 # If successful, you should see:
 # ✅ Database connection successful
-# ✅ Read permissions verified
-```
+# ✅ Read permissions verified</code></pre>
+            </div>
         </div>
         
         <div class="card">
             <h3>Step 5: Set Environment Variables (Optional)</h3>
             <p>For easier management, you can set these environment variables in your shell profile:</p>
             
-```bash
-# Add these to your ~/.bashrc or ~/.zshrc file
+            <div class="code-block">
+                <pre><code class="language-bash"># Add these to your ~/.bashrc or ~/.zshrc file
 
 # Oracle configuration
 export ORACLE_HOME=/opt/oracle/instantclient
@@ -166,13 +166,13 @@ export SNOWFLAKE_WAREHOUSE="COMPUTE_WH"
 
 # PostgreSQL configuration
 export POSTGRES_HOST="postgres.company.com"
-export POSTGRES_DB="analytics"
-```
+export POSTGRES_DB="analytics"</code></pre>
+            </div>
 
             <p>After adding these, reload your shell:</p>
-```bash
-source ~/.bashrc  # or ~/.zshrc
-```
+            <div class="code-block">
+                <pre><code class="language-bash">source ~/.bashrc  # or ~/.zshrc</code></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -204,29 +204,27 @@ source ~/.bashrc  # or ~/.zshrc
             <p>You can also run SQL queries directly from your terminal:</p>
             
             <h4>Query customer data:</h4>
-
-```sql
-mcp query database "
+            <div class="code-block">
+                <pre><code class="language-sql">mcp query database "
 SELECT customer_name, total_revenue 
 FROM customers 
 WHERE created_date >= DATE '2024-01-01'
 ORDER BY total_revenue DESC 
 LIMIT 10
-"
-```
+"</code></pre>
+            </div>
 
             <h4>Analyze application metrics:</h4>
-
-```sql
-mcp query database "
+            <div class="code-block">
+                <pre><code class="language-sql">mcp query database "
 SELECT DATE(log_timestamp) as log_date, 
        COUNT(*) as error_count
 FROM application_logs 
 WHERE log_level = 'ERROR'
 GROUP BY DATE(log_timestamp)
 ORDER BY log_date DESC
-"
-```
+"</code></pre>
+            </div>
         </div>
     </div>
 </div>
