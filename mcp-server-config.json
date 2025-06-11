@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "enterprise-mcp-docs": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-github",
+        "--owner",
+        "vosbek",
+        "--repo", 
+        "enterprise-mcp-documentation"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}",
+        "GITHUB_API_URL": "https://api.github.com"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "--root",
+        "/mnt/c/devl/workspaces/mcp-enterprise/enterprise-mcp-documentation-main"
+      ]
+    }
+  }
+}
