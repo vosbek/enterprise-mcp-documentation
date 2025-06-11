@@ -3,24 +3,24 @@ title: MCP Value Proposition
 description: Enterprise value, ROI metrics, and competitive advantages of Model Context Protocol implementation
 ---
 
-<div class="hero" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #10b981 100%); position: relative; overflow: hidden;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"grid\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><path d=\"M 10 0 L 0 0 0 10\" fill=\"none\" stroke=\"%23ffffff\" stroke-width=\"0.5\" opacity=\"0.1\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23grid)\"/></svg>'); opacity: 0.3;"></div>
-    <div class="container" style="position: relative; z-index: 1;">
+<div class="hero">
+    <div class="container">
         <div class="hero-badge">🚀 Enterprise AI Transformation</div>
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem;">Unlock 10x Developer Productivity</h1>
-        <p style="font-size: 1.375rem; max-width: 700px;">Model Context Protocol revolutionizes enterprise development by connecting AI assistants directly to your existing systems, reducing integration time by 85% and accelerating feature delivery.</p>
+        <h1>Unlock 10x Developer Productivity</h1>
+        <p>Model Context Protocol revolutionizes enterprise development by connecting AI assistants directly to your existing systems, reducing integration time by 85% and accelerating feature delivery.</p>
+        
         <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="hero-badge" style="flex-direction: column; text-align: center; min-width: 140px;">
                 <div style="font-size: 2rem; font-weight: 700; color: #fbbf24;">85%</div>
-                <div style="font-size: 0.875rem; opacity: 0.9;">Integration Time Reduction</div>
+                <div style="font-size: 0.875rem;">Integration Time Reduction</div>
             </div>
-            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="hero-badge" style="flex-direction: column; text-align: center; min-width: 140px;">
                 <div style="font-size: 2rem; font-weight: 700; color: #34d399;">10x</div>
-                <div style="font-size: 0.875rem; opacity: 0.9;">Developer Productivity</div>
+                <div style="font-size: 0.875rem;">Developer Productivity</div>
             </div>
-            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="hero-badge" style="flex-direction: column; text-align: center; min-width: 140px;">
                 <div style="font-size: 2rem; font-weight: 700; color: #f87171;">$2.3M</div>
-                <div style="font-size: 0.875rem; opacity: 0.9;">Annual Cost Savings</div>
+                <div style="font-size: 0.875rem;">Annual Cost Savings</div>
             </div>
         </div>
     </div>
